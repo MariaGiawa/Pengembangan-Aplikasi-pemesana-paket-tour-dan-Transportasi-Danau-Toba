@@ -8,55 +8,36 @@
 
    <!-- favicon -->
    <!-- <link rel="icon" type="image/png" href="assets/images/favicon.png"> -->
-   <!-- <link rel="icon" type="image/png" href="{{asset('assets/images/favicon.png')}}"> -->
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <link rel="icon" type="image/png" href="{{asset('assets/images/favicon.png')}}">
 
    <!-- Bootstrap CSS -->
    <!-- <link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css" media="all"> -->
    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
-
    <!-- jquery-ui css -->
    <!-- <link rel="stylesheet" type="text/css" href="assets/vendors/jquery-ui/jquery-ui.min.css"> -->
    <link rel="stylesheet" href="{{asset('assets/vendors/jquery-ui/jquery-ui.min.css')}}">
-
    <!-- fancybox box css -->
    <!-- <link rel="stylesheet" type="text/css" href="assets/vendors/fancybox/dist/jquery.fancybox.min.css"> -->
-   <link rel="stylesheet" href="{{asset('assets/vendors/fancybox/dist/jquery.fancybox.min.css')}}">
-
+   <!-- <link rel="stylesheet" href="{{asset('assets/vendors/fancybox/dist/jquery.fancybox.min.css')}}"> -->
+   <link rel="stylesheet" href="{{asset('assets/vendors/fontawesome/css/all.min.css')}}">
    <!-- Fonts Awesome CSS -->
    <!-- <link rel="stylesheet" type="text/css" href="assets/vendors/fontawesome/css/all.min.css"> -->
-   <link rel="stylesheet" href="{{asset('assets/vendors/fontawesome/css/all.min.css')}}">
-
+   <link rel="stylesheet" href="{{asset('assets/vendors/elementskit-icon-pack/assets/css/ekiticons.css')}}">
    <!-- Elmentkit Icon CSS -->
    <!-- <link rel="stylesheet" type="text/css" href="assets/vendors/elementskit-icon-pack/assets/css/ekiticons.css"> -->
-   <link rel="stylesheet" href="{{asset('assets/vendors/elementskit-icon-pack/assets/css/ekiticons.css')}}">
+   <link rel="stylesheet" type="text/css" href="{{asset('assets/vendors/elementskit-icon-pack/assets/css/ekiticons.css')}}">
 
    <!-- slick slider css -->
    <!-- <link rel="stylesheet" type="text/css" href="assets/vendors/slick/slick.css"> -->
-   <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
-   
    <link rel="stylesheet" href="{{asset('assets/vendors/slick/slick.css')}}">
-
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
-    <!-- <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}" />  -->
-
-    <!-- Libraries Stylesheet -->
-    
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap">
-
-
-
+   <link rel="stylesheet" type="text/css" href="assets/vendors/slick/slick-theme.css">
    <!-- google fonts -->
-   <!-- <link
+   <link
       href="https://fonts.googleapis.com/css2a19e.css?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&amp;display=swap"
-      rel="stylesheet"> -->
+      rel="stylesheet">
    <!-- Custom CSS -->
-
-   <!-- <link rel="stylesheet" href="{{asset('assets/css/style.css')}}"> -->
-
+   <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+  
    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
    <title>Traveler – Travel & Trip Business HTML5 Template</title>
 </head>
@@ -131,102 +112,102 @@
                      <nav id="navigation" class="navigation">
                         <ul>
                            <li class="menu-active">
-                              <a href="index-2.html">Home</a>
+                              <a href="/">Home</a>
                            </li>
                            <li>
-                              <a href="about.html">about us</a>
+                              <a href="/about">about us</a>
                            </li>
                            <li>
-                              <a href="destination.html">destination</a>
+                              <a href="/destination">destination</a>
                            </li>
                            <li class="menu-item-has-children">
-                              <a href="index-2.html">packages</a>
+                              <a href="/">packages</a>
                               <ul>
                                  <li>
-                                    <a href="package.html">Packages</a>
+                                    <a href="/package">Packages</a>
                                  </li>
                                  <li>
-                                    <a href="package-offer.html">Package offer</a>
+                                    <a href="/package-offer">Package offer</a>
                                  </li>
                                  <li>
-                                    <a href="package-detail.html">Package detail</a>
+                                    <a href="/package-detail">Package detail</a>
                                  </li>
                                  <li>
-                                    <a href="cart.html">Cart page</a>
+                                    <a href="/cart">Cart page</a>
                                  </li>
                                  <li>
-                                    <a href="booking.html">Booking page</a>
+                                    <a href="/booking">Booking page</a>
                                  </li>
                                  <li>
-                                    <a href="confirmation.html">Confirmation</a>
+                                    <a href="/confirm">Confirmation</a>
                                  </li>
                               </ul>
                            </li>
                            <li class="menu-item-has-children">
-                              <a href="index-2.html">Pages</a>
+                              <a href="/">Pages</a>
                               <ul>
                                  <li>
-                                    <a href="home-banner.html">Home Banner</a>
+                                    <a href="/home-banner">Home Banner</a>
                                  </li>
                                  <li>
-                                    <a href="service.html">Service</a>
+                                    <a href="/service">Service</a>
                                  </li>
                                  <li class="menu-item-has-children">
                                     <a href="#">Career</a>
                                     <ul>
                                        <li>
-                                          <a href="career.html">Career</a>
+                                          <a href="/career">Career</a>
                                        </li>
                                        <li>
-                                          <a href="career-detail.html">Career detail</a>
+                                          <a href="/career-detail">Career detail</a>
                                        </li>
                                     </ul>
                                  </li>
                                  <li>
-                                    <a href="team.html">Tour guide</a>
+                                    <a href="/team">Tour guide</a>
                                  </li>
                                  <li>
-                                    <a href="gallery.html">Gallery page</a>
+                                    <a href="/gallery">Gallery page</a>
                                  </li>
                                  <li class="menu-item-has-children">
                                     <a href="#">Blog</a>
                                     <ul>
                                        <li>
-                                          <a href="blog-archive.html">Blog archive</a>
+                                          <a href="/blog-archive">Blog archive</a>
                                        </li>
                                        <li>
-                                          <a href="blog-single.html">blog single</a>
+                                          <a href="/blog-single">blog single</a>
                                        </li>
                                     </ul>
                                  </li>
                                  <li>
-                                    <a href="single-page.html">Single Page</a>
+                                    <a href="/single-page">Single Page</a>
                                  </li>
                                  <li>
-                                    <a href="testimonial.html">Testimonial</a>
+                                    <a href="/testimonial">Testimonial</a>
                                  </li>
                                  <li>
-                                    <a href="faq.html">Faq Page</a>
+                                    <a href="/faq">Faq Page</a>
                                  </li>
                                  <li>
-                                    <a href="search-page.html">Search Page</a>
+                                    <a href="/search-page">Search Page</a>
                                  </li>
                                  <li>
-                                    <a href="404.html">404 Page</a>
+                                    <a href="/404">404 Page</a>
                                  </li>
                                  <li>
-                                    <a href="comming-soon.html">Comming Soon Page</a>
+                                    <a href="/comming-soon">Comming Soon Page</a>
                                  </li>
                               </ul>
                            </li>
                            <li>
-                              <a href="contact.html">contact us</a>
+                              <a href="/contact">contact us</a>
                            </li>
                         </ul>
                      </nav>
                   </div>
                   <div class="header-btn">
-                     <a href="booking.html" class="round-btn">Book Now</a>
+                     <a href="/booking" class="round-btn">Book Now</a>
                   </div>
                </div>
             </div>
@@ -1262,10 +1243,8 @@
       <!-- ***custom top bar offcanvas html*** -->
    </div>
 
-
-
-      <!-- JavaScript Libraries -->
-    <script src="{{asset('assets/vendors/jquery/jquery.js')}}"></script>
+   <!-- JavaScript -->
+   <script src="{{asset('assets/vendors/jquery/jquery.js')}}"></script>
     <script src="https://unpkg.com/imagesloaded%404.1.4/imagesloaded.pkgd.min.js"></script>
     <script src="{{asset('assets/vendors/waypoint/waypoints.js')}}"></script>
     <script src="{{asset('assets/vendors/bootstrap/js/bootstrap.min.js')}}"></script>
@@ -1277,9 +1256,6 @@
     <script src="{{asset('assets/vendors/slick-nav/jquery.slicknav.js')}}"></script>
     <script src="{{asset('assets/vendors/fancybox/dist/jquery.fancybox.min.js')}}"></script>
     <script src="{{asset('assets/js/custom.min.js')}}"></script>
-
-    <!-- Template Javascript -->
-
 </body>
 
 </html>
