@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HotelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('login', [AuthController::class, 'index'])->name('login');
+Route::post('custom-login', [AuthController::class, 'customLogin'])->name('login.custom'); 
+Route::get('/registration', [AuthController::class, 'registration'])->name('register-user');
+Route::post('custom-registration', [AuthController::class, 'customRegistration'])->name('register.custom'); 
+Route::get('signout', [AuthController::class, 'signOut'])->name('signout'); 
 
 Route::get('/', function () {
     return view('user/index');
@@ -89,3 +97,12 @@ Route::get('/testimonial', function () {
 Route::get('/comming-soon', function () {
     return view('user/comming-soon');
 });
+
+
+
+//// Admin
+Route::get('/Admin-home', function () {
+    return view('Admin/index');
+});
+
+Route::get('/Admin/Hotel', [HotelController::class, 'index']);

@@ -12,31 +12,39 @@
 
    <!-- Bootstrap CSS -->
    <!-- <link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css" media="all"> -->
-   <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
+ <!-- favicon -->
+ <link rel="icon" type="image/png" href="assets/images/favicon.png">
+   <!-- Bootstrap CSS -->
+   <!-- <link rel="stylesheet" href="assets/vendors/bootstrap/css/bootstrap.min.css" media="all"> -->
+   <link rel="stylesheet" href="{{asset('assets/vendors/bootstrap/css/bootstrap.min.css')}}" media="all">
+
    <!-- jquery-ui css -->
    <!-- <link rel="stylesheet" type="text/css" href="assets/vendors/jquery-ui/jquery-ui.min.css"> -->
    <link rel="stylesheet" href="{{asset('assets/vendors/jquery-ui/jquery-ui.min.css')}}">
+
    <!-- fancybox box css -->
    <!-- <link rel="stylesheet" type="text/css" href="assets/vendors/fancybox/dist/jquery.fancybox.min.css"> -->
-   <!-- <link rel="stylesheet" href="{{asset('assets/vendors/fancybox/dist/jquery.fancybox.min.css')}}"> -->
-   <link rel="stylesheet" href="{{asset('assets/vendors/fontawesome/css/all.min.css')}}">
+   <link rel="stylesheet" href="{{asset('assets/vendors/fancybox/dist/jquery.fancybox.min.css')}}">
+
    <!-- Fonts Awesome CSS -->
    <!-- <link rel="stylesheet" type="text/css" href="assets/vendors/fontawesome/css/all.min.css"> -->
-   <link rel="stylesheet" href="{{asset('assets/vendors/elementskit-icon-pack/assets/css/ekiticons.css')}}">
+   <link rel="stylesheet" href="{{asset('assets/vendors/fontawesome/css/all.min.css')}}">
+
    <!-- Elmentkit Icon CSS -->
    <!-- <link rel="stylesheet" type="text/css" href="assets/vendors/elementskit-icon-pack/assets/css/ekiticons.css"> -->
-   <link rel="stylesheet" type="text/css" href="{{asset('assets/vendors/elementskit-icon-pack/assets/css/ekiticons.css')}}">
+   <link rel="stylesheet" href="{{asset('assets/vendors/elementskit-icon-pack/assets/css/ekiticons.css')}}">
 
    <!-- slick slider css -->
-   <!-- <link rel="stylesheet" type="text/css" href="assets/vendors/slick/slick.css"> -->
    <link rel="stylesheet" href="{{asset('assets/vendors/slick/slick.css')}}">
-   <link rel="stylesheet" type="text/css" href="assets/vendors/slick/slick-theme.css">
+   <!-- <link rel="stylesheet" type="text/css" href="assets/vendors/slick/slick.css"> -->
+   <link rel="stylesheet" href="{{asset('assets/vendors/slick/slick-theme.css')}}">
+   <!-- <link rel="stylesheet" type="text/css" href="assets/vendors/slick/slick-theme.css"> -->
    <!-- google fonts -->
    <link
       href="https://fonts.googleapis.com/css2a19e.css?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&amp;family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&amp;display=swap"
       rel="stylesheet">
    <!-- Custom CSS -->
-   <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+   <link rel="stylesheet" href="{{asset('assets/style.css')}}">
   
    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
    <title>Traveler – Travel & Trip Business HTML5 Template</title>
@@ -362,7 +370,7 @@
                      </div>
                   </div>
                   <div class="section-btn-wrap text-center">
-                     <a href="destination.html" class="round-btn">More Destination</a>
+                     <a href="/destination" class="round-btn">More Destination</a>
                   </div>
                </div>
             </div>

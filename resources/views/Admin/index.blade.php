@@ -17,13 +17,20 @@
 	<title>Travl Hotel Admin Dashboard</title>
 	
 	<!-- FAVICONS ICON -->
-	<link rel="shortcut icon" type="image/png" href="images/favicon.png" />
-	<link href="vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
-	<link href="vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
-	<link href="vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-	
+	<!-- <link rel="shortcut icon" type="image/png" href="assets/Admin/images/favicon.png" /> -->
+	<link rel="stylesheet" href="{{asset('assets/Admin/images/favicon.png')}}">
+
+	<!-- <link href="vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet"> -->
+	<link rel="stylesheet" href="{{asset('assets/Admin/vendor/jquery-nice-select/css/nice-select.css')}}">
+
+	<!-- <link href="vendor/owl-carousel/owl.carousel.css" rel="stylesheet"> -->
+	<link rel="stylesheet" href="{{asset('assets/Admin/vendor/owl-carousel/owl.carousel.css')}}">
+
+	<!-- <link href="vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet"> -->
+	<link rel="stylesheet" href="{{asset('assets/Admin/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css')}}">
 	<!-- Style css -->
-	<link href="css/style.css" rel="stylesheet">
+	<link rel="stylesheet" href="{{asset('assets/Admin/style.css')}}">
+	<!-- <link href="css/style.css" rel="stylesheet"> -->
 	
 </head>
 <body>
@@ -108,7 +115,7 @@
 									<li class="active dlab-chat-user">
 										<div class="d-flex bd-highlight">
 											<div class="img_cont">
-												<img src="images/avatar/1.jpg" class="rounded-circle user_img" alt=""/>
+												<img src="{{URL::asset('assets/Admin/images/avatar/1.jpg')}}" class="rounded-circle user_img" alt=""/>
 												<span class="online_icon"></span>
 											</div>
 											<div class="user_info">
@@ -661,7 +668,7 @@
 											 <li>
 												<div class="timeline-panel">
 													<div class="media me-2">
-														<img alt="image" width="50" src="images/avatar/1.jpg">
+														<img alt="image" width="50" src="{{URL::asset('assets/Admin/images/profile/pic1.jpg')}}"">
 													</div>
 													<div class="media-body">
 														<h6 class="mb-1">Dr sultads Send you Photo</h6>
@@ -762,7 +769,9 @@
 							</li>
 							<li class="nav-item dropdown header-profile">
 								<a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
-									<img src="images/profile/pic1.jpg" width="20" alt=""/>
+									<img src="{{URL::asset('assets/Admin/images/profile/pic1.jpg')}}" width="20" alt=""/>
+								
+								
 								</a>
 								<div class="dropdown-menu dropdown-menu-end">
 									<a href="app-profile.html" class="dropdown-item ai-icon">
@@ -1358,29 +1367,42 @@
 		Scripts
 	***********************************-->
 	<!-- Required vendors -->
-	<script src="vendor/global/global.min.js"></script>
+	<!-- <script src="vendor/global/global.min.js"></script> -->
+	<script src="{{asset('assets/Admin/vendor/global/global.min.js')}}"></script>
 
-	<script src="vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+	<!-- <script src="vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script> -->
+	<script src="{{asset('assets/Admin/vendor/jquery-nice-select/js/jquery.nice-select.min.js')}}"></script>
 	
 	<!-- Apex Chart -->
 	
-	<script src="vendor/apexchart/apexchart.js"></script>
+	<!-- <script src="vendor/apexchart/apexchart.js"></script> -->
+	<script src="{{asset('assets/Admin/vendor/apexchart/apexchart.js')}}"></script>
 	
 	
 	<!-- Chart piety plugin files -->
 	
 	
 	<!-- Dashboard 1 -->
-	<script src="js/dashboard/dashboard-1.js"></script>
-	
-	<script src="vendor/owl-carousel/owl.carousel.js"></script>
-	<script src="vendor/bootstrap-datetimepicker/js/moment.js"></script>
-	<script src="vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-	
-	<script src="js/custom.min.js"></script>
-	<script src="js/dlabnav-init.js"></script>
-	<script src="js/demo.js"></script>
-	<script src="js/styleSwitcher.js"></script>
+	<!-- <script src="assets\Admin\js\dashboard/dashboard-1.js"></script> -->
+	<script src="{{asset('assets/Admin/js/dashboard/dashboard-1.js')}}"></script>
+	<script src="{{asset('assets/Admin/vendor/owl-carousel/owl.carousel.js')}}"></script>
+	<!-- <script src="vendor/owl-carousel/owl.carousel.js"></script> -->
+	<script src="{{asset('assets/Admin/vendor/bootstrap-datetimepicker/js/moment.js')}}"></script>
+	<!-- <script src="vendor/bootstrap-datetimepicker/js/moment.js"></script> -->
+	<!-- <script src="vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script> -->
+	<script src="{{asset('assets/Admin/vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.j')}}"></script>
+
+	<script src="{{asset('assets/Admin/js/custom.min.js')}}"></script>
+	<!-- <script src="js/custom.min.js"></script> -->
+	<script src="{{asset('assets/Admin/js/custom.min.js')}}"></script>
+	<script src="{{asset('assets/Admin/js/dlabnav-init.js')}}"></script>
+	<script src="{{asset('assets/Admin/js/demo.js')}}"></script>
+	<script src="{{asset('assets/Admin/js/styleSwitcher.js')}}"></script>
+
+
+	<!-- <script src="js/dlabnav-init.js"></script> -->
+	<!-- <script src="js/demo.js"></script>
+	<script src="js/styleSwitcher.js"></script> -->
 	<script>
 		function TravlCarousel()
 			{
