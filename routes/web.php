@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+
 use App\Http\Controllers\HotelController;
+use App\Http\Controllers\RestaurantController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,94 +17,34 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('login', [AuthController::class, 'index'])->name('login');
-Route::post('custom-login', [AuthController::class, 'customLogin'])->name('login.custom'); 
-Route::get('/registration', [AuthController::class, 'registration'])->name('register-user');
-Route::post('custom-registration', [AuthController::class, 'customRegistration'])->name('register.custom'); 
-Route::get('signout', [AuthController::class, 'signOut'])->name('signout'); 
-
-Route::get('/', function () {
-    return view('user/index');
-});
-Route::get('/about', function () {
-    return view('user/about');
-});
-
-Route::get('/destination', function () {
-    return view('user/destination');
-});
-Route::get('/404', function () {
-    return view('user/404');
-});
-Route::get('/contact', function () {
-    return view('user/contact');
-});
-Route::get('/blog-archive', function () {
-    return view('user/blog-archive');
-});
-Route::get('/blog-single', function () {
-    return view('user/blog-single');
-});
-Route::get('/booking', function () {
-    return view('user/booking');
-});
-Route::get('/career', function () {
-    return view('user/career');
-});
-Route::get('/career-detail', function () {
-    return view('user/career-detail');
-});
-Route::get('/cart', function () {
-    return view('user/cart');
-});
-Route::get('/confirm', function () {
-    return view('user/confirmation');
-});
-Route::get('/faq', function () {
-    return view('user/faq');
-});
-Route::get('/gallery', function () {
-    return view('user/gallery');
-});
-Route::get('/home', function () {
-    return view('user/home');
-});
-Route::get('/package-detail', function () {
-    return view('user/package-detail');
-});
-Route::get('/package-offer', function () {
-    return view('user/package-offer');
-});
-Route::get('/package', function () {
-    return view('user/package');
-});
-Route::get('/policy', function () {
-    return view('user/policy');
-});
-Route::get('/search-page', function () {
-    return view('user/search-page');
-});
-Route::get('/service', function () {
-    return view('user/service');
-});
-Route::get('/single-page', function () {
-    return view('user/single-page');
-});
-Route::get('/team', function () {
-    return view('user/team');
-});
-Route::get('/testimonial', function () {
-    return view('user/testimonial');
-});
-Route::get('/comming-soon', function () {
-    return view('user/comming-soon');
-});
 
 
+// Route::get('/', function () {
+//     return view('user/index');
+// });
+
+// Route::get('/restaurants', function () {
+//     return view('user/restaurants');
+// });
 
 //// Admin
-Route::get('/Admin-home', function () {
-    return view('Admin/index');
+Route::get('/admin-home', function () {
+    return view('admin-side/page-admin/index');
 });
 
-Route::get('/Admin/Hotel', [HotelController::class, 'index']);
+Route::get('/kelolahotel', [HotelController::class, 'index']);
+Route::get('/', [HotelController::class, 'showList']);
+Route::get('/user/hotel', [HotelController::class, 'show']);
+Route::get('/tambah-hotel', [HotelController::class, 'create']);
+Route::get('/edit-hotel/{id}', [HotelController::class, 'edit']);
+Route::post('/edit-hotel/{id}', [HotelController::class, 'update'])->name('hotel.ubah');
+Route::post('/tambah-hotel/store', [HotelController::class, 'store'])->name('formhotel.store');
+Route::get('/delete/{id}', [HotelController::class, 'delete'])->name('hotel.hapus');
+
+Route::get('/kelola-restaurant', [RestaurantController::class, 'index']);
+Route::get('/user/restaurant', [RestaurantController::class, 'show']);
+Route::get('/tambah-restaurant', [RestaurantController::class, 'create']);
+Route::get('/edit-restaurant/{id}', [RestaurantController::class, 'edit']);
+Route::post('/edit-restaurant/{id}', [RestaurantController::class, 'update'])->name('restaurant.ubah');
+Route::post('/tambah-restaurant/store', [RestaurantController::class, 'store'])->name('formrestaurant.store');
+Route::get('/delete/{id}', [RestaurantController::class, 'delete'])->name('restauran.hapus');
