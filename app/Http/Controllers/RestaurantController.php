@@ -22,10 +22,17 @@ class RestaurantController extends Controller
     public function show()
     {
         $restaurants = Restaurant::with('images')->paginate(10);
-        return view('user.restaurants', compact('restaurants'));
+        return view('user.restaurants.restaurants', compact('restaurants'));
     }
 
-
+    public function details($id)
+    {
+        // dd($id);
+        $restaurant = Restaurant::findOrFail($id);
+        $images = $restaurant->images;
+        // dd($restaurant);
+        return view('User.restaurants.detail', ['restaurant' => $restaurant,'images' => $images]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -38,33 +45,12 @@ class RestaurantController extends Controller
 
         return view('admin-side.page-admin.restaurant.tambah-restaurant', compact('restaurants'));
     }
-
-
-
-
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    //     public function storePhoto(Request $request, $id)
-    // {
-    //     $request->validate([
-    //         'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-    //     ]);
-
-    //     $imageName = time() . '.' . $request->image->extension();
-    //     $request->image->move(public_path('images'), $imageName);
-
-    //     $restaurantImage = restaurantImage::create([
-    //         'restaurant_id' => $id,
-    //         'image_url' => '/images/' . $imageName,
-    //     ]);
-
-    //     return redirect()->route('restaurants.show', $id)->with('success', 'Photo uploaded successfully.');
-    // }
 
     public function store(Request $request)
     {
@@ -136,7 +122,7 @@ class RestaurantController extends Controller
         if ($deletedImages) {
             RestaurantImage::whereIn('id', $deletedImages)->delete();
         }
-        
+
         $images = $request->file('images');
         if ($images) {
             foreach ($images as $image) {

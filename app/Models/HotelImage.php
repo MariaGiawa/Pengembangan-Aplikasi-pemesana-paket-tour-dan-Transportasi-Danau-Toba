@@ -8,15 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class HotelImage extends Model
 {
     use HasFactory;
-    protected $fillable =[
+    protected $fillable = [
         'hotel_id',
         'image_url',
         'caption'
     ];
+
     public function hotel()
-{
-    return $this->belongsTo(Hotel::class);
+    {
+        return $this->belongsTo(Hotel::class);
+    }
 }
-
-}
-

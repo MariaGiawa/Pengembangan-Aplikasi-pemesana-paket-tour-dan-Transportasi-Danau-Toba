@@ -19,9 +19,9 @@
   <div id="layoutSidenav_content">
     <main>
       <div class="container-fluid px-4">
-        <h1 class="mt-4">Selamat Datang,</h1>
+      <h1 class="mt-4">Selamat Datang, {{Auth::user()->name}}</h1>
         <ol class="breadcrumb mb-4">
-          <li class="breadcrumb-item active">Tambah Makanan Minuman</li>
+          <li class="breadcrumb-item active">Tambah Hotel</li>
         </ol>
 
         <form action="{{ route('formhotel.store') }}" method="post" enctype="multipart/form-data">
@@ -63,7 +63,7 @@
             <div class="col">
               <div class="form-outline">
                 <label class="form-label" for="form6Example1">Deskripsi </label>
-                <input type="text" id="description" class="form-control @error('description') is-invalid @enderror" name="description" value="{{old('description')}}" />
+                <textarea type="text" id="description" class="form-control @error('description') is-invalid @enderror" name="description" value="{{old('description')}}"></textarea>
 
               </div>
             </div>

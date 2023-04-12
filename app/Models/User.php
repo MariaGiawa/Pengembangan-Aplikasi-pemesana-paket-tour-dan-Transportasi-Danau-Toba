@@ -45,7 +45,7 @@ class User extends Authenticatable
     public function isAdmin(){
         return $this->role =='admin'; 
     }
-    public function isistraveler(){
+    public function isTraveler(){
         return $this->role =='traveler';
     }
 }

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Session;
 use App\Models\Hotel;
 use App\Models\HotelImage;
+use App\Models\PemesananHotel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class HotelController extends Controller
@@ -22,17 +25,29 @@ class HotelController extends Controller
 
     public function show()
     {
-    $hotels = Hotel::paginate(6);
+        $hotels = Hotel::paginate(6);
         // dd($hotels);
-        return view('User.hotel', ['hotels' => $hotels]);
-     
+        return view('User.hotels.hotel', ['hotels' => $hotels]);
     }
     public function showList()
     {
-    $hotels = Hotel::paginate(3);
+        // dd("yy");
+        $hotels = Hotel::paginate(3);
         // dd($hotels);
         return view('User.index', ['hotels' => $hotels]);
-     
+    }
+    public function details($id)
+    {
+        // dd($id);
+        $hotels = Hotel::find($id);
+        // dd($hotels);
+        $hotelId = $hotels->id;
+        // dd($hotelId);
+        $hotels = Hotel::findOrFail($id);
+        // dd($hotelId);
+        $images = $hotels->images;
+        // dd($images);
+        return view('User.hotels.details', ['hotel' => $hotels, 'images' => $images, 'hotelId' => $hotelId]);
     }
 
 
@@ -56,22 +71,6 @@ class HotelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    //     public function storePhoto(Request $request, $id)
-    // {
-    //     $request->validate([
-    //         'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-    //     ]);
-
-    //     $imageName = time() . '.' . $request->image->extension();
-    //     $request->image->move(public_path('images'), $imageName);
-
-    //     $hotelImage = HotelImage::create([
-    //         'hotel_id' => $id,
-    //         'image_url' => '/images/' . $imageName,
-    //     ]);
-
-    //     return redirect()->route('hotels.show', $id)->with('success', 'Photo uploaded successfully.');
-    // }
 
     public function store(Request $request)
     {
@@ -110,10 +109,12 @@ class HotelController extends Controller
 
         return redirect('kelolahotel');
     }
+
+
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $id 
      * @return \Illuminate\Http\Response
      */
     public function edit($hotel_id)
@@ -139,7 +140,7 @@ class HotelController extends Controller
         $hotel->lokasi = $request->input('lokasi');
         $hotel->description = $request->input('description');
         $hotel->harga = $request->input('harga');
-    
+
         $hotel_image = HotelImage::where('hotel_id', $id)->first();
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -152,21 +153,41 @@ class HotelController extends Controller
             // dd($hotel_image);
             $hotel_image->save();
         }
-    
+
         return redirect('kelolahotel')->with('success', 'Hotel updated successfully');
     }
-    
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function delete($hotels_id)
+    public function delete($id)
     {
-        DB::table('hotels')->where('id', $hotels_id)
-            ->delete();
-        return redirect()->back()->with('succes','Hotel delete successfull');
+        $hotel = Hotel::findOrFail($id);
+        $hotel->delete();
+
+        return redirect()->back()->with('success', 'Hotel deleted successfully');
+    }
+
+
+
+    public function storePemesanan(Request $request)
+    {
+
+        // return ('hello');
+        // return redirect()->route('hotels.details',[1]);
+        // dd($request);
+        $hotelId = $request->input('hotel_id');
+        $hotels = Hotel::findOrFail($hotelId);
+
+        //  return ('hello');
+        $pemesanan = new PemesananHotel(); // create a new instance of the PemesananHotel model
+        $pemesanan->hotel_id = $hotelId;
+        $pemesanan->night_count = $request->night_count;
+        $pemesanan->check_in = $request->check_in;
+        $pemesanan->check_out = $request->check_out;
+        $pemesanan->nightly_rate = $hotels->harga;
+        $pemesanan->total_cost = $pemesanan->nightly_rate * $pemesanan->night_count;
+        //  calculate total cost
+        $images = $hotels->images;
+        $pemesanan->save();
+        Session::flash('warning', 'Hotel has already been booked');
+        return view('User.hotels.details', ['hotel' => $hotels, 'images' => $images, 'hotelId' => $hotelId, 'hotels' => $hotels]);
     }
 }

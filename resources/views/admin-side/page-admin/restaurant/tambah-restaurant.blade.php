@@ -19,9 +19,9 @@
   <div id="layoutSidenav_content">
     <main>
       <div class="container-fluid px-4">
-        <h1 class="mt-4">Selamat Datang,</h1>
+      <h1 class="mt-4">Selamat Datang, {{Auth::user()->name}}</h1>
         <ol class="breadcrumb mb-4">
-          <li class="breadcrumb-item active">Tambah Makanan Minuman</li>
+          <li class="breadcrumb-item active">Tambah Restauran</li>
         </ol>
 
         <form action="{{ route('formrestaurant.store') }}" method="post" enctype="multipart/form-data">
