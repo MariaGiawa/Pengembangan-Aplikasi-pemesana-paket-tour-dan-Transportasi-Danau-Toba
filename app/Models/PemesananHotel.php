@@ -15,6 +15,7 @@ class PemesananHotel extends Model
         'check_in',
         'check_out',
         'total_cost',
+        'status',
         'hotel_id'
         ];
    

@@ -26,27 +26,19 @@ class HotelController extends Controller
     public function show()
     {
         $hotels = Hotel::paginate(6);
-        // dd($hotels);
         return view('User.hotels.hotel', ['hotels' => $hotels]);
     }
     public function showList()
     {
-        // dd("yy");
         $hotels = Hotel::paginate(3);
-        // dd($hotels);
         return view('User.index', ['hotels' => $hotels]);
     }
     public function details($id)
     {
-        // dd($id);
         $hotels = Hotel::find($id);
-        // dd($hotels);
         $hotelId = $hotels->id;
-        // dd($hotelId);
         $hotels = Hotel::findOrFail($id);
-        // dd($hotelId);
         $images = $hotels->images;
-        // dd($images);
         return view('User.hotels.details', ['hotel' => $hotels, 'images' => $images, 'hotelId' => $hotelId]);
     }
 
@@ -161,18 +153,13 @@ class HotelController extends Controller
     {
         $hotel = Hotel::findOrFail($id);
         $hotel->delete();
-
         return redirect()->back()->with('success', 'Hotel deleted successfully');
     }
 
 
 
     public function storePemesanan(Request $request)
-    {
-
-        // return ('hello');
-        // return redirect()->route('hotels.details',[1]);
-        // dd($request);
+    {  
         $hotelId = $request->input('hotel_id');
         $hotels = Hotel::findOrFail($hotelId);
 
@@ -190,4 +177,5 @@ class HotelController extends Controller
         Session::flash('warning', 'Hotel has already been booked');
         return view('User.hotels.details', ['hotel' => $hotels, 'images' => $images, 'hotelId' => $hotelId, 'hotels' => $hotels]);
     }
+    
 }

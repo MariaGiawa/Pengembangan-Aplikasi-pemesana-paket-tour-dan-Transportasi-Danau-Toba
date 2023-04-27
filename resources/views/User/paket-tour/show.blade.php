@@ -144,23 +144,23 @@
 	</header>
 	<!-- End Header -->
 	<section class="parallax" data-parallax="scroll" data-image-src="{{ asset('assets/img/sunset.jpg') }}" data-natural-width="1400" data-natural-height="470">
-  <div class="parallax">
-    <div class="parallax__layer parallax__layer--back">
-      <img src="{{ asset('assets/img/sunset.jpg') }}" alt="Background image" class="img-fluid img-thumbnail rounded-circle" style="width: 200px;">
-    </div>
-    <div class="parallax__layer parallax__layer--front">
-      <div class="parallax__content">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12">
-              <h1 class="text-center text-white">Welcome to Our Restaurant</h1>
-            </div>
-          </div>http://127.0.0.1:8000/
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+		<div class="parallax">
+			<div class="parallax__layer parallax__layer--back">
+				<img src="{{ asset('assets/img/sunset.jpg') }}" alt="Background image" class="img-fluid img-thumbnail rounded-circle" style="width: 200px;">
+			</div>
+			<div class="parallax__layer parallax__layer--front">
+				<div class="parallax__content">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12">
+								<h1 class="text-center text-white">Welcome to Our Restaurant</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
 
 
@@ -188,129 +188,38 @@
 				</p>
 			</div>
 			<hr>
-			<div class="row magnific-gallery add_bottom_60 ">
-				<div class="col-md-3 col-sm-6">
-					<div class="img_wrapper_gallery">
-						<div class="img_container_gallery">
-							<a href="img/notredame.jpg" title="Photo title" data-effect="mfp-zoom-in"><img src="img/notredame.jpg" alt="Image" class="img-fluid">
-								<i class="icon-resize-full-2"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="img_wrapper_gallery">
-						<div class="img_container_gallery">
-							<a href="img/notredame.jpg" title="Photo title" data-effect="mfp-zoom-in"><img src="img/notredame.jpg" alt="Image" class="img-fluid">
-								<i class="icon-resize-full-2"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="img_wrapper_gallery">
-						<div class="img_container_gallery">
-							<a href="img/notredame.jpg" title="Photo title" data-effect="mfp-zoom-in"><img src="img/notredame.jpg" alt="Image" class="img-fluid">
-								<i class="icon-resize-full-2"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="img_wrapper_gallery">
-						<div class="img_container_gallery">
-							<a href="img/notredame.jpg" title="Photo title" data-effect="mfp-zoom-in"><img src="img/notredame.jpg" alt="Image" class="img-fluid">
-								<i class="icon-resize-full-2"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="img_wrapper_gallery">
-						<div class="img_container_gallery">
-							<a href="img/notredame.jpg" title="Photo title" data-effect="mfp-zoom-in"><img src="img/notredame.jpg" alt="Image" class="img-fluid">
-								<i class="icon-resize-full-2"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="img_wrapper_gallery">
-						<div class="img_container_gallery">
-							<a href="img/notredame.jpg" title="Photo title" data-effect="mfp-zoom-in"><img src="img/notredame.jpg" alt="Image" class="img-fluid">
-								<i class="icon-resize-full-2"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="img_wrapper_gallery">
-						<div class="img_container_gallery">
-							<a href="img/notredame.jpg" title="Photo title" data-effect="mfp-zoom-in"><img src="img/notredame.jpg" alt="Image" class="img-fluid">
-								<i class="icon-resize-full-2"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="img_wrapper_gallery">
-						<div class="img_container_gallery">
-							<a href="img/notredame.jpg" title="Photo title" data-effect="mfp-zoom-in"><img src="img/notredame.jpg" alt="Image" class="img-fluid">
-								<i class="icon-resize-full-2"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
+			<div class="container">
+    <div class="row">
+        @foreach ($pakettours as $pakettour)
+        <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100 border-0 rounded-0">
+                <div class="position-relative">
+                    <img src="/public/tour/{{ $pakettour->image }}" class="card-img-top rounded-0" alt="{{ $pakettour->nama }}">
+                    <div class="position-absolute bottom-0 start-0 p-2 text-white">
+                        <span class="badge bg-secondary">{{ $pakettour->diskon }}</span>
+                    </div>
+                    <div class="position-absolute top-0 end-0 p-2 text-white ">
+                        <span class="badge bg-secondary">{{ $pakettour->jumlahorang }} Orang</span>
+                        <span class="badge bg-secondary">{{ $pakettour->jumlah_hari }} Hari</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">{{ $pakettour->nama }}</h5>
+                    <p class="card-text">{{ $pakettour->detail }}</p>
+                    <p class="card-text text-danger fw-bold"><s>{{ $pakettour->harga_awal }}</s></p>
+                    <p class="card-text fw-bold">{{ $pakettour->harga }}</p>
+                    <a href="/booking/{{ $pakettour->id }}" class="btn btn-primary w-100 fw-bold">Pesan Sekarang</a>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
+
+
 			<!-- End row -->
-			<div class="main_title">
-				<h2>Some <span>videos</span> from travellers</h2>
-				<p>
-					Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.
-				</p>
-			</div>
-			<hr>
-			<div class="row  magnific">
-				<div class="col-md-3 col-sm-6">
-					<div class="img_wrapper_gallery">
-						<div class="img_container_gallery">
-							<a href="https://vimeo.com/45830194" class="video" title="Video Vimeo"><img src="img/notredame.jpg" alt="Image" class="img-fluid">
-								<i class="icon-resize-full-2"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="img_wrapper_gallery">
-						<div class="img_container_gallery">
-							<a href="https://www.youtube.com/watch?v=Zz5cu72Gv5Y" class="video" title="Video Youtube"><img src="img/senna.jpg" alt="Image" class="img-fluid">
-								<i class="icon-resize-full-2"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="img_wrapper_gallery">
-						<div class="img_container_gallery">
-							<a href="https://vimeo.com/45830194" class="video" title="Video Vimeo"><img src="img/notredame.jpg" alt="Image" class="img-fluid">
-								<i class="icon-resize-full-2"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="img_wrapper_gallery">
-						<div class="img_container_gallery">
-							<a href="https://www.youtube.com/watch?v=Zz5cu72Gv5Y" class="video" title="Video Youtube"><img src="img/senna.jpg" alt="Image" class="img-fluid">
-								<i class="icon-resize-full-2"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- End row -->
-		</div>
-		<!-- End container -->
+
+			<!-- End container -->
 	</main>
 	<!-- End main -->
 

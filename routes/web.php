@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\PemesanController;
-// use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\TourController;
@@ -33,12 +33,12 @@ Route::get('/user-rental', function () {
     return view('User/rental');
 });
 Route::group(['middleware' => ['web']], function () {
-Route::get('/show-register', [RegisterController::class, 'showRegistrationForm'])->name('user.register');
-Route::post('/register', [RegisterController::class, 'register'])->name('register');
-// Route::get('/register', [RegisterController::class, 'create'])->name('register');
-Route::get('/user/login', [LoginController::class, 'login'])->name('user.login');
-Route::post('/login', [LoginController::class, 'authenticate']);
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::get('/show-register', [RegisterController::class, 'showRegistrationForm'])->name('user.register');
+    Route::post('/register', [RegisterController::class, 'register'])->name('register');
+    // Route::get('/register', [RegisterController::class, 'create'])->name('register');
+    Route::get('/user/login', [LoginController::class, 'login'])->name('user.login');
+    Route::post('/login', [LoginController::class, 'authenticate']);
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 
 // Route::resource('reservations',[PemesananController::class]);
@@ -53,9 +53,12 @@ Route::post('/edit-hotel/{id}', [HotelController::class, 'update'])->name('hotel
 Route::post('/tambah-hotel/store', [HotelController::class, 'store'])->name('formhotel.store');
 Route::delete('/delete/{id}', [HotelController::class, 'delete'])->name('hotel.hapus');
 Route::post('/pemesanan-hotel', [HotelController::class, 'storePemesanan'])->name('hotel.storePemesanan');
-Route::get('/order-hotel', [PemesanController::class, 'index']);
-Route::put('/hotels/{id}/accept', [PemesananController::class, 'accept'])->name('hotels.accept');
-Route::delete('/hotels/{id}', [PemesananController::class, 'destroy'])->name('hotels.destroy');
+Route::get('/order-hotel', [PemesanController::class, 'index'])->name('pemesananhotel');
+Route::put('/hotels/{id}/accept', [PemesanController::class, 'accept'])->name('hotels.accept');
+Route::delete('/hotels/{id}', [PemesanController::class, 'destroy'])->name('pemesanan_hotel.destroy');
+Route::get('/hotels/{id}', [PemesanController::class, 'edit'])->name('pemesanan_hotel.edit');
+Route::post('/validasi/{pemesanan}', [PemesanController::class, 'update'])->name('pemesanan_hotel.update');
+
 
 Route::get('/kelola-restaurant', [RestaurantController::class, 'index']);
 Route::get('/user/restaurant', [RestaurantController::class, 'show']);
@@ -66,6 +69,10 @@ Route::post('/edit-restaurant/{id}', [RestaurantController::class, 'update'])->n
 Route::post('/tambah-restaurant/store', [RestaurantController::class, 'store'])->name('formrestaurant.store');
 Route::get('/delete/{id}', [RestaurantController::class, 'delete'])->name('restauran.hapus');
 
-Route::resource('/paket-tour',TourController::class);
+Route::resource('/paket-tour', TourController::class);
+Route::get('/paket-tour/{id}', [TourController::class, 'details'])->name('paket-tour.details');
+
+Route::resource('/booking', BookingController::class);
+
 
 

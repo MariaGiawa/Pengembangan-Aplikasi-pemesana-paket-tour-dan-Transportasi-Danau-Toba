@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tour extends Model
 {
     use HasFactory;
+    protected $table = 'tours';
     protected $fillable =[
         'nama',
         'detail',
@@ -19,4 +20,8 @@ class Tour extends Model
         'image'
 
     ];
+    
+    public function booking(){
+        return $this->hasMany(Booking::class);
+    }
 }

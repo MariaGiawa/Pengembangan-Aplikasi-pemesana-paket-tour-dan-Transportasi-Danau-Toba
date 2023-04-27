@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Kelola Transportation</title>
+    <title>Kelola Tour</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link href="{{asset('css/styles.css')}}" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -21,50 +21,55 @@
             <div class="container-fluid px-4">
                 <h1 class="mt-4">Selamat Datang, {{Auth::user()->name}}</h1>
                 <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item active">Kelola Transportation</li>
+                    <li class="breadcrumb-item active">Kelola Tour</li>
                 </ol>
                 <div class="col-3">
-                    <a href="{{ url('transportations.create') }}">
-                        <button class="btn btn-outline-success">Tambah Transportation</button>
+                    <a href="{{ route('paket-tour.create') }}">
+                        <button class="btn btn-outline-success">Tambah Tour</button>
                     </a>
                 </div>
                 </br>
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
-                        Tabel Tranportation
+                        Tabel Tour
                     </div>
                     <div class="card-body">
                         <table id="datatablesSimple" class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Nama Tranportation</th>
-                                    <th>Type</th>
-                                    <th>Price</th>
-                                    <th>Route</th>
-                                    <th>Location</th>
-                                    <th>Duration</th>
+                                    <th>Nama Tour</th>
+                                    <th>Diskon</th>
+                                    <th>Harga</th>
+                                    <th>Jumlah Orang</th>
+                                    <th>Jumlah Hari</th>
+                                    <th>Harga total</th>
+                                    <th>Detail</th>
                                     <th>Images</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($pakettourss as $transportation )
+                                @foreach ($pakettours as $pakettour )
                                 <tr>
-                                    <td>{{ $pakettours->name }}</td>
-                                    <td>{{ $pakettours->type }}</td>
-                                    <td>{{ $pakettours->price }}</td>
-                                    <td>{{ $pakettours->route }}</td>
-                                    <td>{{ $pakettours->location }}</td>
-                                    <td>{{ $pakettours->duration }}</td>
+                                    <td>{{ $pakettour->nama }}</td>
+                                    <td>{{ $pakettour->diskon }}</td>
+                                    <td>{{ $pakettour->harga }}</td>
+                                    <td>{{ $pakettour->jumlahorang }}</td>
+                                    <td>{{ $pakettour->jumlah_hari }}</td>
+                                    <td>{{ $pakettour->hargatotal }}</td>
+                                    <td>{{ $pakettour->detail }}</td>
                                     <td>
-                                        @foreach ($pakettours->images as $image)
-                                        <img src="/storage/{{ $image->image_url }}" style="width:70px; height: 70px; object-fit: cover; border:1px solid black;" alt="" data-toggle="modal" data-target="#myModalgambar{{$image->hotel_id}}" />
-                                        @endforeach
+
+                                        <img src="/public/tour/{{ $pakettour->image }}" style="width:70px; height: 70px; object-fit: cover; border:1px solid black;" alt="" data-toggle="modal" data-target="#myModalgambar{{$pakettour->image}}" />
                                     </td>
                                     <td>
-                                        <button class="btn btn-outline-warning" onclick="window.location.href='/edit-hotel/{{ $hotel->id }}'"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                        <button class="btn btn-outline-danger" onclick="window.location.href='/delete/{{ $hotel->id }}'"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        <a href="{{ route('paket-tour.edit', $pakettour->id) }}" class="btn btn-outline-warning"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                        <form action="{{ route('paket-tour.destroy', $pakettour->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-outline-danger" type="submit"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -72,7 +77,13 @@
                         </table>
                     </div>
                 </div>
-
+                @if($errors->any())
+                <div class="mb-3">
+                    @foreach($errors->all() as $error)
+                    <p>{{$error}}</p>
+                    @endforeach
+                </div>
+                @endif
             </div>
         </main>
         @endsection

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Frontsite\Restaurant\RestaurantRequest;
 use App\Models\Restaurant;
 use App\Models\RestaurantImage;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class RestaurantController extends Controller
@@ -27,10 +27,8 @@ class RestaurantController extends Controller
 
     public function details($id)
     {
-        // dd($id);
         $restaurant = Restaurant::findOrFail($id);
         $images = $restaurant->images;
-        // dd($restaurant);
         return view('User.restaurants.detail', ['restaurant' => $restaurant,'images' => $images]);
     }
     /**
@@ -52,28 +50,11 @@ class RestaurantController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request)
+    public function store(RestaurantRequest $request)
     {
-        // dd($request);
-        $this->validate(
-            $request,
-            [
-                'nama_restaurant' => 'required',
-                'lokasi' => 'required',
-                'description' => 'required',
-                'images.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'harga' => 'required',
+        $request = $request->validated();
+        $restaurant = Restaurant::create($request);
 
-            ]
-        );
-
-        $restaurant = Restaurant::create([
-            "nama_restaurant" => $request->nama_restaurant,
-            "lokasi" => $request->lokasi,
-            "description" => $request->description,
-            "harga" => $request->harga
-        ]);
-        // dd($restaurant);
         $image = $request->file('images');
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
@@ -88,12 +69,7 @@ class RestaurantController extends Controller
         // dd($restaurant);
         return redirect('kelola-restaurant');
     }
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($restaurant_id)
     {
         $restaurant = Restaurant::find($restaurant_id);
@@ -102,16 +78,8 @@ class RestaurantController extends Controller
         return view('admin-side.page-admin.restaurant.edit-restaurant', compact('restaurant', 'level'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(RestaurantRequest $request, $id)
     {
-        // dd($request);
         $restaurant = Restaurant::findOrFail($id);
         $restaurant->nama_restaurant = $request->input('nama_restaurant');
         $restaurant->lokasi = $request->input('lokasi');
@@ -138,13 +106,6 @@ class RestaurantController extends Controller
         return redirect('kelola-restaurant')->with('success', 'restaurant updated successfully');
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function delete($restaurants_id)
     {
         DB::table('restaurants')->where('id', $restaurants_id)

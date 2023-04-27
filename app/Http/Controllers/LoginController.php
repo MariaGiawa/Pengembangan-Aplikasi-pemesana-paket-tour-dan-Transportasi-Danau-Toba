@@ -23,10 +23,7 @@ class LoginController extends Controller
 
     public function authenticate(Request $request)
     {
-        // dd($request);
         $credentials = $request->only('email', 'password');
-        // $result = Auth::attempt($credentials);
-        // dd($result);
         if (Auth::attempt($credentials)) {
             if (Auth::user()->isAdmin()) {
                 return redirect()->intended('/admin-home');

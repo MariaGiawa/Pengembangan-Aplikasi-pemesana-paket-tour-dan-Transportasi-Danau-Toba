@@ -24,7 +24,7 @@ class TransportImage extends Migration
                 ->references('id')
                 ->on('transportations')
                 ->onDelete('cascade');
-    });
+        });
     }
 
     /**

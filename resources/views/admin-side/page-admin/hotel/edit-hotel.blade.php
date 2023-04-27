@@ -81,8 +81,8 @@
           <div class="row mb-4">
             <div class="col">
               <div class="form-outline">
-                <label class="form-label" for="form6Example1">Deskripsi</label>
-                <textarea type="text" id="form6Example1" class="form-control @error('description') is-invalid @enderror" name="description" value="{{$hotel->description}}"></textarea>
+                <label class="form-label" for="description">Deskripsi</label>
+                <textarea id="description" name="description" class="form-control @error('description') is-invalid @enderror">{{ $hotel->description }}</textarea>
                 @error('description')
                 <div class="invalid-feedback">
                   {{ $message }}
