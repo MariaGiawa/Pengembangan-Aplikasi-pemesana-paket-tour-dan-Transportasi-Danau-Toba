@@ -77,33 +77,33 @@
 						<div id="header_menu">
 							<img src="assets/img/logo.jpeg" width="160" height="34" alt="City tours">
 						</div>
-						<ul>
-							<li>
-								<a href="/">Home</a>
-							</li>
-							<li>
-								<a href="/user/restaurant">Tours</a>
+							<ul>
+								<li>
+									<a href="/">Home</a>
+								</li>
+								<li>
+									<a href="/paket-tour/show">Tours</a>
 
-							</li>
-							<li>
-								<a href="/user/hotel">Hotels </a>
-							</li>
-							<li class="submenu">
-								<a href="#">Tour</a>
+								</li>
+								<li>
+									<a href="/user/hotel">Hotels </a>
+								</li>
+								<li class="submenu">
+									<a href="/user/restaurant">Restorant</a>
 
-							</li>
-							<li class="submenu">
-								<a href="#">Transportation</a>
+								</li>
+								<li class="submenu">
+									<a href="#">Transportation</a>
 
-							</li>
-							<li class="megamenu submenu">
-								<a href="#">Souvenir</a>
+								</li>
+								<li class="megamenu submenu">
+									<a href="#">Souvenir</a>
 
-							</li>
-							<li class="megamenu submenu">
-								<a href="#">Pages</i></a>
-							</li>
-						</ul>
+								</li>
+								<li class="megamenu submenu">
+									<a href="#">Pages</i></a>
+								</li>
+							</ul>
 					</div><!-- End main-menu -->
 					<ul id="top_tools">
 						<li>
@@ -182,39 +182,39 @@
 
 		<div class="container margin_60">
 			<div class="main_title">
-				<h2>Some <span>images</span> from travellers</h2>
-				<p>
-					Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.
-				</p>
+				<h2>Beberapa <span>Tour</span> dari Di sekitar dDnau Toba</h2>
+				<h5>
+					TourToba menawarkan pengalaman Tour yang unik
+				</h5>
 			</div>
 			<hr>
 			<div class="container">
-    <div class="row">
-        @foreach ($pakettours as $pakettour)
-        <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-            <div class="card h-100 border-0 rounded-0">
-                <div class="position-relative">
-                    <img src="/public/tour/{{ $pakettour->image }}" class="card-img-top rounded-0" alt="{{ $pakettour->nama }}">
-                    <div class="position-absolute bottom-0 start-0 p-2 text-white">
-                        <span class="badge bg-secondary">{{ $pakettour->diskon }}</span>
-                    </div>
-                    <div class="position-absolute top-0 end-0 p-2 text-white ">
-                        <span class="badge bg-secondary">{{ $pakettour->jumlahorang }} Orang</span>
-                        <span class="badge bg-secondary">{{ $pakettour->jumlah_hari }} Hari</span>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title fw-bold">{{ $pakettour->nama }}</h5>
-                    <p class="card-text">{{ $pakettour->detail }}</p>
-                    <p class="card-text text-danger fw-bold"><s>{{ $pakettour->harga_awal }}</s></p>
-                    <p class="card-text fw-bold">{{ $pakettour->harga }}</p>
-                    <a href="/booking/{{ $pakettour->id }}" class="btn btn-primary w-100 fw-bold">Pesan Sekarang</a>
-                </div>
-            </div>
-        </div>
-        @endforeach
-    </div>
-</div>
+				<div class="row">
+					@foreach ($pakettours as $pakettour)
+					<div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+						<div class="card h-100 border-0 rounded-0">
+							<div class="position-relative">
+								<img src="/public/tour/{{ $pakettour->image }}" class="card-img-top rounded-0" alt="{{ $pakettour->nama }}">
+								<div class="position-absolute bottom-0 start-0 p-2 text-white">
+									<span class="badge bg-secondary">{{ $pakettour->diskon }}</span>
+								</div>
+								<div class="position-absolute top-0 end-0 p-2 text-white ">
+									<span class="badge bg-secondary">{{ $pakettour->jumlahorang }} Orang</span>
+									<span class="badge bg-secondary">{{ $pakettour->jumlah_hari }} Hari</span>
+								</div>
+							</div>
+							<div class="card-body">
+								<h5 class="card-title fw-bold">{{ $pakettour->nama }}</h5>
+								<p class="card-text">{{ $pakettour->detail }}</p>
+								<p class="card-text text-danger fw-bold"><s>{{ $pakettour->harga_awal }}</s></p>
+								<p class="card-text fw-bold">{{ $pakettour->harga }}</p>
+								<a href="/booking/{{ $pakettour->id }}" class="btn btn-primary w-100 fw-bold">Pesan Sekarang</a>
+							</div>
+						</div>
+					</div>
+					@endforeach
+				</div>
+			</div>
 
 
 			<!-- End row -->

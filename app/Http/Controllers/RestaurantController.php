@@ -85,7 +85,7 @@ class RestaurantController extends Controller
         $restaurant->lokasi = $request->input('lokasi');
         $restaurant->description = $request->input('description');
         $restaurant->harga = $request->input('harga');
-
+         
         $deletedImages = $request->input('deleted_images');
         if ($deletedImages) {
             RestaurantImage::whereIn('id', $deletedImages)->delete();
@@ -102,7 +102,9 @@ class RestaurantController extends Controller
                     'images' => $imageName
                 ]);
             }
+            // $image->save();
         }
+        $restaurant->save();
         return redirect('kelola-restaurant')->with('success', 'restaurant updated successfully');
     }
 

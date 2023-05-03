@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Session;
 use App\Models\Hotel;
 use App\Models\HotelImage;
 use App\Models\PemesananHotel;
+use App\Models\Tour;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -30,8 +31,9 @@ class HotelController extends Controller
     }
     public function showList()
     {
+        $pakettours = Tour::paginate(3);
         $hotels = Hotel::paginate(3);
-        return view('User.index', ['hotels' => $hotels]);
+        return view('User.index', ['hotels' => $hotels,'pakettours'=> $pakettours]);
     }
     public function details($id)
     {
@@ -75,10 +77,8 @@ class HotelController extends Controller
                 'description' => 'required',
                 'image' => 'required|mimes:jpeg,jpg,png,gif',
                 'harga' => 'required',
-
             ]
         );
-
 
         $hotel = Hotel::create([
             "nama_hotel" => $request->nama_hotel,
@@ -126,13 +126,12 @@ class HotelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request);
+        
         $hotel = Hotel::findOrFail($id);
         $hotel->nama_hotel = $request->input('nama_hotel');
         $hotel->lokasi = $request->input('lokasi');
         $hotel->description = $request->input('description');
         $hotel->harga = $request->input('harga');
-
         $hotel_image = HotelImage::where('hotel_id', $id)->first();
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -142,10 +141,8 @@ class HotelController extends Controller
                 $image->getClientOriginalName(),
                 'public'
             );
-            // dd($hotel_image);
             $hotel_image->save();
         }
-
         return redirect('kelolahotel')->with('success', 'Hotel updated successfully');
     }
 
@@ -163,7 +160,6 @@ class HotelController extends Controller
         $hotelId = $request->input('hotel_id');
         $hotels = Hotel::findOrFail($hotelId);
 
-        //  return ('hello');
         $pemesanan = new PemesananHotel(); // create a new instance of the PemesananHotel model
         $pemesanan->hotel_id = $hotelId;
         $pemesanan->night_count = $request->night_count;
@@ -171,7 +167,6 @@ class HotelController extends Controller
         $pemesanan->check_out = $request->check_out;
         $pemesanan->nightly_rate = $hotels->harga;
         $pemesanan->total_cost = $pemesanan->nightly_rate * $pemesanan->night_count;
-        //  calculate total cost
         $images = $hotels->images;
         $pemesanan->save();
         Session::flash('warning', 'Hotel has already been booked');

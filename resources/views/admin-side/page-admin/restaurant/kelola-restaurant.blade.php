@@ -40,8 +40,8 @@
                                 <tr>
                                     <th style="text-align: center">Nama restaurant</th>
                                     <th style="text-align: center">Lokasi</th>
-                                    <th style="text-align: center">Descripsi</th>
                                     <th style="text-align: center">Harga</th>
+                                    <th style="text-align: center">Descripsi</th>
                                     <th style="text-align: center">Gambar</th>
                                     <th style="text-align: center">Aksi</th>
                                 </tr>

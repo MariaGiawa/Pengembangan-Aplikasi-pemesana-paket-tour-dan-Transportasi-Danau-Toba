@@ -52,8 +52,10 @@
                     <div class="col-6"><i class="icon-phone"></i><strong>0045 043204434</strong></div>
                     <div class="col-6">
                         <ul id="top_links">
-                            <li><a href="/user/login" id="access_link">Sign in</a></li>
-                            <li><a href="/show-register" id="access_link">Sign up</a></li>
+                            <li><a href="/user/login" ></a></li>
+                            <li><a href="/show-register" id="access_link">Register</a></li>
+                            <li><a href="/user/login" id="access_link">Login</a></li>
+
                             <li><a href="https://1.envato.market/ryzjQ" target="_parent">Tour DanauToba</a></li>
                         </ul>
                     </div>
@@ -79,14 +81,14 @@
                                 <a href="/">Home</a>
                             </li>
                             <li>
-                                <a href="/user/restaurant">Tours</a>
+                                <a href="/paket-tour/show">Tours</a>
 
                             </li>
                             <li>
                                 <a href="/user/hotel">Hotels </a>
                             </li>
                             <li class="submenu">
-                                <a href="#">Tour</a>
+                                <a href="/user/restaurant">Restorant</a>
 
                             </li>
                             <li class="submenu">
@@ -201,7 +203,9 @@
         <!--/carousel-->
 
         <div class="white_bg">
-            <div class="container margin_60">
+            
+            <div class="container margin_50">
+            <center><h2>Page Available<h2></center>
                 <div class="row small-gutters categories_grid">
                     <div class="col-sm-12 col-md-6">
                         <a href="#">

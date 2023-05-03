@@ -25,7 +25,6 @@
   <link href="{{ asset('assets/assets/css/style.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/assets/css/vendors.css') }}" rel="stylesheet">
 
-
   <!-- ALTERNATIVE COLORS CSS -->
   <link href="#" id="colors" rel="stylesheet">
 
@@ -83,14 +82,14 @@
                 <a href="/">Home</a>
               </li>
               <li>
-                <a href="/user/restaurant">Tours</a>
+                <a href="/paket-tour/show">Tours</a>
 
               </li>
               <li>
                 <a href="/user/hotel">Hotels </a>
               </li>
               <li class="submenu">
-                <a href="#">Tour</a>
+                <a href="/user/restaurant">Restorant</a>
 
               </li>
               <li class="submenu">
@@ -144,16 +143,28 @@
     <!-- container -->
   </header>
   <!-- End Header -->
-
-  <section class="parallax-window" data-parallax="scroll" data-image-src="img/hotels_bg.jpg" data-natural-width="1400" data-natural-height="470">
-    <div class="parallax-content-1 opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.6)">
-      <div class="animated fadeInDown">
-        <h1>Paris Hotels</h1>
-        <p>Cursus neque cursus curae ante scelerisque vehicula.</p>
+  <section class="parallax" data-parallax="scroll" data-image-src="{{ asset('assets/img/sunset.jpg') }}" data-natural-width="1400" data-natural-height="470">
+    <div class="parallax">
+      <div class="parallax__layer parallax__layer--back">
+        <img src="{{ asset('assets/img/sunset.jpg') }}" alt="Background image" class="img-fluid img-thumbnail rounded-circle" style="width: 200px;">
+      </div>
+      <div class="parallax__layer parallax__layer--front">
+        <div class="parallax__content">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <h1 class="text-center text-white">Welcome to Our Restaurant</h1>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-  <!-- End section -->
+
+
+
+  <!-- End Section -->
 
   <main>
     <div id="position">
@@ -167,276 +178,54 @@
         </ul>
       </div>
     </div>
-    <!-- Position -->
-
-    <div class="collapse" id="collapseMap">
-      <div id="map" class="map"></div>
-    </div>
-    <!-- End Map -->
+    <!-- End Position -->
 
     <div class="container margin_60">
-      <div class="row">
-        <aside class="col-lg-3">
-          <p>
-            <a class="btn_map" data-bs-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="Hide map" data-text-original="View on map">View on map</a>
-          </p>
-
-          <div id="filters_col">
-            <a data-bs-toggle="collapse" href="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters" id="filters_col_bt"><i class="icon_set_1_icon-65"></i>Filters</a>
-            <div class="collapse show" id="collapseFilters">
-              <div class="filter_type">
-                <h6>Price</h6>
-                <input type="text" id="range" name="range" value="">
-              </div>
-              <div class="filter_type">
-                <h6>Star Category</h6>
-                <ul>
-                  <li>
-                    <label class="container_check">
-                      <span class="rating">
-                        <i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i>
-                      </span>(15)
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="container_check">
-                      <span class="rating">
-                        <i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81"></i>
-                      </span>(10)
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="container_check">
-                      <span class="rating">
-                        <i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i>
-                      </span>(22)
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="container_check">
-                      <span class="rating">
-                        <i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i>
-                      </span>(08)
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="container_check">
-                      <span class="rating">
-                        <i class="icon_set_1_icon-81 voted"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i><i class="icon_set_1_icon-81"></i>
-                      </span>(08)
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                  </li>
-                </ul>
-              </div>
-              <div class="filter_type">
-                <h6>Review Score</h6>
-                <ul>
-                  <li>
-                    <label class="container_check">
-                      Superb: 9+ (77)
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="container_check">
-                      Good: 7+ (909)
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="container_check">
-                      Pleasant: 6+ (1196)
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="container_check">
-                      No rating (198)
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                  </li>
-                </ul>
-              </div>
-              <div class="filter_type">
-                <h6>Facility</h6>
-                <ul>
-                  <li>
-                    <label class="container_check">
-                      Pet allowed
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="container_check">
-                      Wifi
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="container_check">
-                      Spa
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="container_check">
-                      Restaurant
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="container_check">
-                      Pool
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="container_check">
-                      Parking
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="container_check">
-                      Fitness center
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                  </li>
-                </ul>
-              </div>
-              <div class="filter_type">
-                <h6>District</h6>
-                <ul class="mb-0">
-                  <li>
-                    <label class="container_radio">
-                      Paris Centre
-                      <input type="radio" name="location">
-                      <span class="checkmark"></span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="container_radio">
-                      La Defance
-                      <input type="radio" name="location">
-                      <span class="checkmark"></span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="container_radio">
-                      La Marais
-                      <input type="radio" name="location">
-                      <span class="checkmark"></span>
-                    </label>
-                  </li>
-                  <li>
-                    <label class="container_radio">
-                      Latin Quarter
-                      <input type="radio" name="location">
-                      <span class="checkmark"></span>
-                    </label>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <!--End collapse -->
-          </div>
-          <!--End filters col-->
-        </aside>
-        <!--End aside -->
-
-        <div class="col-lg-9">
-
-          <div id="tools">
-            <div class="row justify-content-between">
-              <div class="col-md-3 col-sm-4">
-                <div class="styled-select-filters">
-                  <select name="sort_price" id="sort_price" data-filter-group="sort_price">
-                    <option value="*" data-filter-value="" selected="">Show all</option>
-                    <option value="lower_price" data-filter-value=".lower_price">Lowest price</option>
-                    <option value="higher_price" data-filter-value=".higher_price">Higher price</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-6 col-sm-4 d-none d-sm-block text-end">
-                <a href="#" class="bt_filters"><i class="icon-th"></i></a> <a href="all_hotels_list.html" class="bt_filters"><i class=" icon-list"></i></a>
-              </div>
-            </div>
-          </div>
-          <!--End tools -->
-          <div class="isotope-wrapper">
-            <div class="row">
-              @foreach ($hotels as $hotel)
-              <div class="col-md-6 col-lg-6 col-sm-12 col-6 ">
-                <div class="hotel_container">
-                  <div class="ribbon_3"><span>Top rated</span></div>
-                  <div class="img_container">
-                    <a href="{{ route('hotel.details', ['id' => $hotel->id]) }}">
-                      @foreach ($hotel->images as $image)
-                      <img src="/storage/{{$image->image_url}}" width="400" height="300" class="img-fluid" alt="Image">
-                      @endforeach
-                      <div class="score"><span>8.5</span>Superb</div>
-                      <div class="short_info hotel">
-                        <span class="price">{{$hotel->harga}}</span>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="hotel_title">
-                    <h3><strong>{{$hotel->nama_hotel}}</strong> Hotel</h3>
-                    <p>{{$hotel->lokasi}}</p>
-                    <div class="rating">
-                      <i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
-                    </div>
-                    <div class="wishlist">
-                      <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              @endforeach
-            </div>
-          </div>
-        </div>
-        <!-- End col lg 9 -->
+      <div class="main_title">
+        <h2>Beberapa <span>Hotel</span> dari Wisata Tour Toba</h2>
+        <h5>
+          Hotel di sekitar Danau Toba memadukan nuansa tradisional dengan kemewahan modern, sehingga menciptakan pengalaman yang tak terlupakan
+        </h5>
       </div>
+      <hr>
+      <div class="isotope-wrapper">
+        <div class="row">
+          @foreach ($hotels as $hotel)
+          <div class="col-md-4 col-lg-4 col-sm-12 col-12">
+            <div class="hotel_container">
+              <div class="ribbon_3"><span>Top rated</span></div>
+              <div class="img_container">
+                <a href="{{ route('hotel.details', ['id' => $hotel->id]) }}">
+                  @foreach ($hotel->images as $image)
+                  <img src="/storage/{{$image->image_url}}" width="400" height="300" class="img-fluid" alt="Image">
+                  @endforeach
+                  <div class="score"><span>8.5</span>Superb</div>
+                  <div class="short_info hotel">
+                    <span class="price">Rp. {{$hotel->harga}}</span>
+                  </div>
+                </a>
+              </div>
+              <div class="hotel_title">
+                <h3><strong>{{$hotel->nama_hotel}}</strong> Hotel</h3>
+                <p>{{$hotel->lokasi}}</p>
+                <div class="rating">
+                  <i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
+                </div>
+                <div class="wishlist">
+                  <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          @endforeach
+        </div>
+      </div>
+
+
       <!-- End row -->
-    </div>
-    <!-- End container -->
-    <div style="display: flex; justify-content: center;">
-      {!! $hotels->links('pagination::bootstrap-4') !!}
-    </div>
 
-
-
-
-
-    <!-- <div class="text-center">
-      {!! $hotels->links() !!}
-    </div> -->
-
-
+      <!-- End container -->
   </main>
-
   <!-- End main -->
 
   <footer class="revealed">
@@ -569,62 +358,4 @@
   <script src="{{ asset('assets/assets/js/jquery-3.6.1.min.js') }}"></script>
   <script src="{{ asset('assets/assets/js/common_scripts_min.js') }}"></script>
   <script src="{{ asset('assets/assets/js/functions.js') }}"></script>
-
-  <!-- Map -->
-  <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAUQKuq-IHkzCt4VoGq2z4XYJ_ip7ZRkws"></script>
-  <!-- <script src="js/map_hotels.js"></script> -->
-  <script src="{{ asset('assets/assets/js/map_hotels.js') }}"></script>
-  <!-- <script src="js/infobox.js"></script> -->
-  <script src="{{ asset('assets/assets/js/infobox.js') }}"></script>
-  <!-- Masonry filter -->
-  <!-- <script src="js/isotope.min.js"></script> -->
-  <script src="{{ asset('assets/assets/js/isotope.min.js') }}"></script>
-
-  <script>
-    $(window).on('load', function() {
-
-      var $container = $('.isotope-wrapper'),
-        filters = {};
-
-      $container.isotope({
-        itemSelector: '.isotope-item'
-      });
-
-      // filter buttons
-      $('.styled-select-filters select').change(function() {
-        var $this = $(this);
-        var group = $this.attr('data-filter-group');
-        filters[group] = $this.find(':selected').attr('data-filter-value');
-        var isoFilters = [];
-        for (var prop in filters) {
-          isoFilters.push(filters[prop])
-        }
-        var selector = isoFilters.join('');
-        $container.isotope({
-          filter: selector
-        });
-        return false;
-      });
-
-    });
-  </script>
-
-  <!-- SWITCHER  -->
-  <!-- <script src="js/switcher.js"></script> -->
-  <script src="{{ asset('assets/assets/js/switcher.js') }}"></script>
-  <!-- 
-  <div id="style-switcher">
-    <h2>Color Switcher <a href="#"><i class="icon_set_1_icon-65"></i></a></h2>
-    <div>
-      <ul class="colors" id="color1">
-        <li><a href="#" class="default" title="Defaul"></a></li>
-        <li><a href="#" class="aqua" title="Aqua"></a></li>
-        <li><a href="#" class="green_switcher" title="Green"></a></li>
-        <li><a href="#" class="orange" title="Orange"></a></li>
-        <li><a href="#" class="blue" title="Blue"></a></li>
-      </ul>
-    </div> -->
-  </div>
 </body>
-
-</html>

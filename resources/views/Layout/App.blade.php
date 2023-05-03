@@ -89,14 +89,14 @@
                                 <a href="/">Home</a>
                             </li>
                             <li>
-                                <a href="/user/restaurant">Tours</a>
+                                <a href="/paket-tour">Tours</a>
 
                             </li>
                             <li>
                                 <a href="/user/hotel">Hotels </a>
                             </li>
                             <li class="submenu">
-                                <a href="#">Tour</a>
+                                <a href="/user/restaurant">Restoran</a>
 
                             </li>
                             <li class="submenu">

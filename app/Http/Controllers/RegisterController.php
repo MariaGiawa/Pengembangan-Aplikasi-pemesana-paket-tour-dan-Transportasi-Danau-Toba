@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
@@ -27,22 +28,13 @@ class RegisterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function register(Request $request)
-    {
-        //  dd($request);
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
-        // dd($request);
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+    public function register(RegisterRequest $request)
+    {   
+        $validatedData = $request->validated();
+        $validatedData['password'] = bcrypt($validatedData['password']);
+        $user = User::create($validatedData);
         auth()->login($user);
-
+    
         return redirect()->intended('/user/login');
     }
 }
