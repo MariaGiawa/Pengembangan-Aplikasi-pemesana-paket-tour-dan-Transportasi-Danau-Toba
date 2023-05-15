@@ -54,7 +54,13 @@
 					<div class="col-6"><i class="icon-phone"></i><strong>0045 043204434</strong></div>
 					<div class="col-6">
 						<ul id="top_links">
-							<li><a href="#sign-in-dialog" id="access_link">Sign in</a></li>
+							@auth
+							<!-- Navigation items for authenticated users -->
+							@else
+							<li><a href="/show-register" id="access_link">Register</a></li>
+							<li><a href="/user/login" id="access_link">Login</a></li>
+							@endauth
+
 							<li><a href="wishlist.html" id="wishlist_link">Wishlist</a></li>
 							<li><a href="https://1.envato.market/ryzjQ" target="_parent">Purchase this template</a></li>
 						</ul>
@@ -77,33 +83,33 @@
 						<div id="header_menu">
 							<img src="assets/img/logo.jpeg" width="160" height="34" alt="City tours">
 						</div>
-							<ul>
-								<li>
-									<a href="/">Home</a>
-								</li>
-								<li>
-									<a href="/paket-tour/show">Tours</a>
+						<ul>
+							<li>
+								<a href="/">Home</a>
+							</li>
+							<li>
+								<a href="/paket-tour/show">Tours</a>
 
-								</li>
-								<li>
-									<a href="/user/hotel">Hotels </a>
-								</li>
-								<li class="submenu">
-									<a href="/user/restaurant">Restorant</a>
+							</li>
+							<li>
+								<a href="/user/hotel">Hotels </a>
+							</li>
+							<li class="submenu">
+								<a href="/user/restaurant">Restoran</a>
 
-								</li>
-								<li class="submenu">
-									<a href="#">Transportation</a>
+							</li>
+							<li class="submenu">
+								<a href="/rental">Transportation</a>
 
-								</li>
-								<li class="megamenu submenu">
-									<a href="#">Souvenir</a>
+							</li>
+							<li class="megamenu submenu">
+								<a href="#">Souvenir</a>
 
-								</li>
-								<li class="megamenu submenu">
-									<a href="#">Pages</i></a>
-								</li>
-							</ul>
+							</li>
+							<li class="megamenu submenu">
+								<a href="#">Pages</i></a>
+							</li>
+						</ul>
 					</div><!-- End main-menu -->
 					<ul id="top_tools">
 						<li>
@@ -205,7 +211,7 @@
 							</div>
 							<div class="card-body">
 								<h5 class="card-title fw-bold">{{ $pakettour->nama }}</h5>
-								<p class="card-text">{{ $pakettour->detail }}</p>
+								<p class="card-text">{{ Illuminate\Support\Str::limit($pakettour->detail, 50) }}</p>
 								<p class="card-text text-danger fw-bold"><s>{{ $pakettour->harga_awal }}</s></p>
 								<p class="card-text fw-bold">{{ $pakettour->harga }}</p>
 								<a href="/booking/{{ $pakettour->id }}" class="btn btn-primary w-100 fw-bold">Pesan Sekarang</a>

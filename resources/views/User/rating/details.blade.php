@@ -3,12 +3,10 @@
 
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 	<meta name="description" content="Citytours - Premium site template for city tours agencies, transfers and tickets.">
 	<meta name="author" content="Ansonika">
-	<title>Tour Toba</title>
+	<title>Toba Tour</title>
 
 	<!-- Favicons-->
 	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
@@ -19,6 +17,8 @@
 
 	<!-- GOOGLE WEB FONT -->
 	<link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&amp;family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 	<!-- COMMON CSS -->
 	<link href="{{ asset('assets/assets/css/bootstrap.min.css ') }}" rel="stylesheet">
@@ -29,37 +29,7 @@
 	<link href="{{ asset('assets/assets/css/shop.css ')}} " rel="stylesheet">
 
 	<!-- ALTERNATIVE COLORS CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 	<link href="#" id="colors" rel="stylesheet">
-	<style>
-		.image-container {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 200px;
-			padding: 10px;
-		}
-
-		.image-container img {
-			width: 100%;
-			height: 120%;
-		}
-		 /* WhatsApp button style */
-			.whatsapp-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: #25D366; /* Customize the button color */
-            color: #fff;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 60px;
-            font-size: 20px;
-            z-index: 9999;
-        }
-	</style>
 
 </head>
 
@@ -144,125 +114,230 @@
 				</nav>
 			</div>
 		</div><!-- container -->
-	</header><!-- End Header -->
+	</header>
 	<!-- End Header -->
-	<section class="parallax" data-parallax="scroll" data-image-src="{{ asset('assets/img/sunset.jpg') }}" data-natural-width="1400" data-natural-height="470">
-		<div class="parallax">
-			<div class="parallax__layer parallax__layer--back">
-				<img src="{{ asset('assets/img/sunset.jpg') }}" alt="Background image" class="img-fluid img-thumbnail rounded-circle" style="width: 200px;">
-			</div>
-			<div class="parallax__layer parallax__layer--front">
-				<div class="parallax__content">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-12">
-								<h1 class="text-center text-white">Welcome to Our Restaurant</h1>
-							</div>
-						</div>
-					</div>
-				</div>
+
+
+
+	<main>
+		<br><br><br>
+		<div id="position">
+			<div class="container">
+				<ul>
+					<li><a href="#">Home</a>
+					</li>
+					<li><a href="#">Category</a>
+					</li>
+					<li>Page active</li>
+				</ul>
 			</div>
 		</div>
-	</section>
-	<!-- End Section -->
-	<main>
-		<br><br>
 		<!-- End Position -->
-		<div class="container">
-			<hr class="page-divider small transparent" />
 
-			<h3 class="block-title alt2"></i>Find Best Rental Car</h3>
-
-			<!-- Search form -->
-			<div class="form-search light">
-				@if ($errors->any())
-				<div class="alert alert-danger">
-					<ul>
-						@foreach ($errors->all() as $error)
-						<li>{{ $error }}</li>
-						@endforeach
-					</ul>
-				</div>
-				@endif
-
-				<div class="card p-3">
-					<form action="{{ route('usertransportation.findcar') }}" method="POST">
-						@csrf
-
-						<div class="row row-inputs">
-							<div class="col-sm-12 col-md-6">
-								<div class="form-group has-icon has-label">
-									<label for="formSearchName">Name</label>
-									<input type="text" class="form-control" id="formSearchName" name="name" placeholder="Enter name">
-								</div>
-							</div>
-							<div class="col-sm-12 col-md-6">
-								<div class="form-group has-icon has-label">
-									<label for="formSearchType">Type</label>
-									<input type="text" class="form-control" id="formSearchType" name="type" placeholder="Enter type">
-								</div>
-							</div>
-						</div>
-
-						<div class="row row-submit">
-							<div class="container-fluid">
-								<div class="inner">
-									<button type="submit" id="formSearchSubmit2" class="btn btn-submit btn-theme pull-right btn-danger">Find Car</button>
-								</div>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-			<!-- /Search form -->
-
-			<hr class="page-divider half transparent" />
-
-			<h3 class="block-title alt2"></i>Result Rental Car</h3>
-
+		<div class="container margin_60">
 			<div class="row">
-				@foreach($transportations as $transportation)
-				<div class="col-md-3 card">
-					<div class="thumbnail no-border no-padding thumbnail-car-card">
-						<div class="media">
-							<div class="image-container">
-							<a class="media-link" data-gal="prettyPhoto" href="{{ route('rental.show', ['id' => $transportation->id]) }}">
+				<div class="col-lg-9">
 
+					<div class="product-details">
+						<div class="basic-details">
+							<div class="row">
+								<div class="image-column col-sm-6">
+									<figure class="image-box"><img src="/public/tours/{{ $wisatas->image }}" alt="">
+									</figure>
+								</div>
+								<div class="info-column col-sm-6">
+									<div class="details-header">
+										<h2>{{$wisatas->nama}}</h2>
+										<div class="item-price">
+										</div>
+										@php
+										$fullStars = floor($averageRating);
+										$halfStars = ceil($averageRating - $fullStars);
+										$emptyStars = 5 - ($fullStars + $halfStars);
+										@endphp
 
-									<img src="/transportation/{{ $transportation->image }}" alt="" style="object-fit: cover;">
-								</a>
+										<div class="rating">
+											@for ($i = 0; $i < $fullStars; $i++) <i class="icon-star voted"></i>
+												@endfor
+
+												@if ($halfStars)
+												<i class="icon-star-half-alt voted"></i>
+												@endif
+
+												@for ($i = 0; $i < $emptyStars; $i++) <i class="icon-star-empty"></i>
+													@endfor
+
+													<small>({{ $ratings->count() }}) Review</small>
+										</div>
+
+									</div>
+
+									<div class="text">
+										<p>
+											{{$wisatas->detail}}
+										</p>
+									</div>
+									<!--Item Meta-->
+									<ul class="item-meta">
+										</li>
+									</ul>
+								</div>
 							</div>
 						</div>
+						<!--End Basic Details-->
 
-						<div class="caption text-center">
-							<h4 class="caption-title"><a href="{{ route('rental.show', ['id' => $transportation->id]) }}">{{ $transportation->name }}</a></h4>
-							<div class="caption-text">{{ $transportation->price }}</div>
-							<div class="buttons">
-								<a class="btn btn-submit btn-theme pull-right btn-danger" href="/rental/show">Rent It</a>
+						<div class="product-info-tabs">
+
+							<div class="prod-tabs" id="product-tabs">
+								<div class="tab-btns clearfix">
+									<a href="#prod-description" class="tab-btn active-btn">Product description</a>
+									<a href="#prod-reviews" class="tab-btn">Reviews <small>({{ $ratings->count() }})</small></a>
+								</div>
+
+								<div class="tabs-container">
+									<div class="tab active-tab" id="prod-description">
+										<h3>Product Description</h3>
+										<div class="content">
+											<p>
+												Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.
+											</p>
+										</div>
+									</div>
+									<!--End Tab-->
+
+									<div class="tab" id="prod-reviews">
+										<h3> <small>({{ $ratings->count() }})</small> Reviews Found</h3>
+										<div class="reviews-container">
+
+											@foreach ($ratings as $rating)
+											<div class="review-box clearfix">
+												<figure class="rev-thumb"><img src="{{ asset('assets/assets/img/pp.png') }}" alt=""></figure>
+												<div class="rev-content">
+													<div class="rating">
+														@php
+														$ratingValue = $rating->rating;
+														$fullStars = $ratingValue;
+														$emptyStars = 5 - $fullStars;
+														@endphp
+
+														@for ($i = 0; $i < $fullStars; $i++) <i class="fas fa-star voted"></i>
+															@endfor
+
+															@for ($i = 0; $i < $emptyStars; $i++) <i class="far fa-star"></i>
+																@endfor
+													</div>
+													<div class="rev-info">
+														{{ $rating->user->name }} – {{ $rating->created_at->format('Y-m-d') }}
+													</div>
+													<div class="rev-text">
+														<p>
+															{{ $rating->review }}
+														</p>
+													</div>
+												</div>
+											</div>
+											@endforeach
+
+										</div>
+										<!--End Review Container-->
+
+										<hr>
+
+										<div class="add-review">
+											<h3>Add a Review</h3>
+											<form method="post" action="{{ route('rating.store') }}">
+												@csrf
+												@if ($errors->any())
+												@foreach ($errors->all() as $error)
+												<div>{{$error}}</div>
+												@endforeach
+												@endif
+												<div class="col-md-6">
+													<div class="form-group">
+														<label>Review</label>
+														<select class="form-select" name="rating" id="rating">
+															<option value="">Tolong review</option>
+															<option value="1">Rendah</option>
+															<option value="2">Memadai</option>
+															<option value="3">Baik</option>
+															<option value="4">Cukup Baik</option>
+															<option value="5">Sangat Baik</option>
+														</select>
+													</div>
+												</div>
+												<div class="form-group col-md-12">
+													<label>Your Review</label>
+													<textarea name="review" id="review" class="form-control" style="height:150px;"></textarea>
+												</div>
+												<input type="hidden" name="wisata_id" value="{{ $wisatas->id }}">
+												<div class="form-group col-md-12">
+													<button type="submit" class="btn_1">Add Review</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+								<!--End tabs-container-->
 							</div>
-							<table class="table">
-								<tr>
-									<td><i class="fa fa-car"></i>{{ $transportation->type }}</td>
-									<td><i class="fa fa-dashboard"></i>{{ $transportation->duration }}</td>
-									<td><i class="fa fa-cog"></i> {{ $transportation->location }}</td>
-									<td><i class="fa fa-road"></i> {{ $transportation->route }}</td>
-								</tr>
-							</table>
+							<!--End prod-tabs-->
 						</div>
+						<!--End product-info-tabs-->
+
+						<div class="related-products">
+							<div class="normal-title">
+								<h3>Related Products</h3>
+							</div>
+							@foreach ($tours as $tour)
+							<?php
+							$ratings = \App\Models\Tour_reviews::where('wisata_id', $tour->id)->get();
+							$averageRating = $ratings->avg('rating');
+							$starRating = round($averageRating * 2) / 2; // round to nearest 0.5
+							$fullStars = floor($starRating);
+							$halfStars = round($starRating - $fullStars);
+							$emptyStars = 5 - $fullStars - $halfStars;
+							?>
+							<div class="row">
+								<div class="shop-item col-lg-4 col-md-6 col-sm-6">
+									<div class="inner-box">
+										<div class="image-box">
+											<figure class="image">
+												<a href="{{ route('rating.index', $tour->id) }}"><img src="/public/tours/{{ $tour->image }}" alt=""></a>
+											</figure>
+
+										</div>
+										<div class="product_description">
+											<div class="rating">
+												@for ($i = 0; $i < $fullStars; $i++) <i class="icon-star voted"></i>
+													@endfor
+													@if ($halfStars)
+													<i class="icon-star-half-alt voted"></i>
+													@endif
+													@for ($i = 0; $i < $emptyStars; $i++) <i class="icon-star-empty"></i>
+														@endfor
+														<small>({{$ratings->count()}})</small>
+											</div>
+											<h3><a href="{{ route('rating.index', $tour->id) }}">{{$tour->nama}}</a></h3>
+											<div class="price">
+												<span class="offer">{{$tour->detail}}
+											</div>
+										</div>
+									</div>
+								</div>
+								@endforeach
+								<!--End Shop Item-->
+
+							</div>
+						</div>
+						<!--End Related products-->
 					</div>
+					<!--End Product-details-->
 				</div>
-				@endforeach
+				<!--End Col-->
+				<!--Sidebar-->
 			</div>
-			<a href="https://wa.me/082213119498" target="_blank" rel="noopener noreferrer" class="whatsapp-button">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
 		</div>
 		<!-- End Container -->
 	</main>
-
-
-
 	<!-- End main -->
 
 	<footer class="revealed">
@@ -387,27 +462,34 @@
 				</div>
 			</div>
 		</form>
-		<script>
-			document.getElementById("price-filter").addEventListener("change", function() {
-				var filterValue = this.value;
-				var url = window.location.href.split('?')[0]; // get the current URL without query string
-				var queryString = window.location.search;
-				var searchParams = new URLSearchParams(queryString);
-				searchParams.set('filter', filterValue);
-				window.location.href = url + '?' + searchParams.toString();
-			});
-		</script>
 		<!--form -->
 	</div>
 	<!-- /Sign In Popup -->
 
-	<!-- Common scripts -->
 	<script src="{{ asset ('assets/assets/js/jquery-3.6.1.min.js') }}"></script>
 	<script src="{{ asset ('assets/assets/js/common_scripts_min.js') }}"></script>
 	<script src="{{ asset ('assets/assets/js/functions.js') }}"></script>
 
+	<script>
+		if ($('.prod-tabs .tab-btn').length) {
+			$('.prod-tabs .tab-btn').on('click', function(e) {
+				e.preventDefault();
+				var target = $($(this).attr('href'));
+				$('.prod-tabs .tab-btn').removeClass('active-btn');
+				$(this).addClass('active-btn');
+				$('.prod-tabs .tab').fadeOut(0);
+				$('.prod-tabs .tab').removeClass('active-tab');
+				$(target).fadeIn(500);
+				$(target).addClass('active-tab');
+			});
+
+		}
+	</script>
+
+
 	<!-- SWITCHER  -->
 	<script src="{{ asset ('assets/assets/js/switcher.js') }}"></script>
+
 
 </body>
 

@@ -19,13 +19,49 @@
 
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&amp;family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
-
+    <!-- Bootstrap CSS -->
     <!-- COMMON CSS -->
     <link href="{{ asset('assets/assets/css/bootstrap.min.css')}} " rel="stylesheet">
     <link href="{{ asset('assets/assets/css/style.css')}}" rel="stylesheet">
     <link href="{{ asset('assets/assets/css/vendors.css')}}" rel="stylesheet">
     <!-- ALTERNATIVE COLORS CSS -->
     <link href="#" id="colors" rel="stylesheet">
+    <style>
+        body {
+            padding: 10px;
+
+        }
+
+        #exTab1 .tab-content {
+            color: white;
+            background-color: #428bca;
+            padding: 5px 15px;
+        }
+
+        #exTab2 h3 {
+            color: white;
+            background-color: #428bca;
+            padding: 5px 15px;
+        }
+
+        /* remove border radius for the tab */
+
+        #exTab1 .nav-pills>li>a {
+            border-radius: 0;
+        }
+
+        /* change border radius for the tab , apply corners on top*/
+
+        #exTab3 .nav-pills>li>a {
+            border-radius: 4px 4px 0 0;
+        }
+
+        #exTab3 .tab-content {
+            color: white;
+            background-color: #428bca;
+            padding: 5px 15px;
+        }
+    </style>
 
 </head>
 
@@ -53,7 +89,13 @@
                     <div class="col-6"><i class="icon-phone"></i><strong>0045 043204434</strong></div>
                     <div class="col-6">
                         <ul id="top_links">
-                            <li><a href="#sign-in-dialog" id="access_link">Sign in</a></li>
+                            @auth
+                            <!-- Navigation items for authenticated users -->
+                            @else
+                            <li><a href="/show-register" id="access_link">Register</a></li>
+                            <li><a href="/user/login" id="access_link">Login</a></li>
+                            @endauth
+
                             <li><a href="wishlist.html" id="wishlist_link">Wishlist</a></li>
                             <li><a href="https://1.envato.market/ryzjQ" target="_parent">Purchase this template</a></li>
                         </ul>
@@ -71,7 +113,7 @@
                     </div>
                 </div>
                 <nav class="col-9">
-                    <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span></span></a>
+                    <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
                     <div class="main-menu">
                         <div id="header_menu">
                             <img src="assets/img/logo.jpeg" width="160" height="34" alt="City tours">
@@ -81,7 +123,7 @@
                                 <a href="/">Home</a>
                             </li>
                             <li>
-                                <a href="/paket-tour">Tours</a>
+                                <a href="/paket-tour/show">Tours</a>
 
                             </li>
                             <li>
@@ -92,7 +134,7 @@
 
                             </li>
                             <li class="submenu">
-                                <a href="#">Transportation</a>
+                                <a href="/rental">Transportation</a>
 
                             </li>
                             <li class="megamenu submenu">
@@ -140,71 +182,71 @@
             </div>
         </div>
         <!-- container -->
-    </header>
+    </header><!-- End Header -->
     <!-- End Header -->
 
-    <section id="hero_2" class="background-image" data-background="url({{ asset('assets/img/Danautoba2.jpg') }})">
-        <div class="opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.6)">
-            <div class="intro_title">
-                @foreach ($pakettours as $pakettour)
-                <h5>{{ $pakettours->nama }}</h5>
-                @endforeach
-
-                <p>Keeksotikan Danau Toba dapat anda rasakan langsung dengan berbagai aktifitas seru yang menarik dan tak terlupakan</p>
-
-
-                <!-- End bs-wizard -->
-            </div>
-            <!-- End intro-title -->
-        </div>
-        <!-- End opacity-mask-->
-    </section>
     <!-- End Section hero_2 -->
     <main>
-        <div id="position">
-            <div class="container">
-                <ul>
-                    <li><a href="#">Home</a>
-                    </li>
-                    <li><a href="#">Category</a>
-                    </li>
-                    <li>Page active</li>
-                </ul>
-            </div>
-        </div>
+        <br><br><br><br>
         <!-- End position -->
-
-
         <div class="container margin_60">
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="alert alert-info" role="alert"><strong>Rooms available</strong> for the selected dates.
-                        <br>PLEASE SELECT YOUR QUANTITY.
-                    </div>
-
+                @isset($pakettours)
                     <table class="table">
                         <thead>
                             <tr>
                                 <th colspan="3">
-                                    Add options / Services
+                                    {{ $pakettours->nama }}
+                                    <p><strong>Harga : {{ $pakettours->harga }}</strong></p>
+
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                @if ($pakettours)
-                                <td>
+
+                                <td class="align-middle">
                                     <center>
                                         <img alt="Image" class="sp-image" src="/public/tour/{{ $pakettours->image }}" width="500px">
-                                    </center>
-                                    <h5>{{ $pakettours->nama }}</h5>
-                                    <p><strong>{{ $pakettours->harga }}</strong></p>
+                                    </center><br>
+                                    <h5></h5>
                                     <p>{{ $pakettours->detail }}</p>
-                                </td>
-                                @endif
+
+                                    <hr>
+                                    <div class="container"></div>
+
+                                    <div id="exTab2" class="container">
+                                        <ul class="nav nav-tabs border-0">
+                                            <li class="nav-item">
+                                                <a class="nav-link active rounded-0" href="#1" data-toggle="tab">Deskripsi</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link rounded-0" href="#2" data-toggle="tab">Kegiatan</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link rounded-0" href="#3" data-toggle="tab">Hari</a>
+                                            </li>
+                                        </ul>
+
+                                        <div class="tab-content p-3 bg-white rounded">
+                                            <div class="tab-pane active" id="1">
+                                                <h3>{{ $pakettours->descripsi }}</h3>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed iaculis quam. Integer et felis bibendum, dapibus nibh ut, tincidunt leo. Nulla facilisi. In in quam nunc. Morbi ultrices turpis id augue accumsan congue. Aliquam erat volutpat. Sed consectetur ipsum in arcu consequat mollis. Praesent sagittis turpis sapien, at consequat mauris consequat vel.</p>
+                                            </div>
+                                            <div class="tab-pane" id="2">
+                                                <h3>{{ $pakettours->kegiatan }}</h3>
+                                                <p>Sed euismod, lorem sit amet euismod malesuada, libero justo malesuada eros, a vulputate elit ex vitae quam. Nulla in consequat tortor, at convallis orci. Sed laoreet sapien vel aliquam semper. Etiam eget erat interdum, viverra nibh at, molestie nunc. Pellentesque lacinia consequat risus eu tempus. Sed efficitur ex eu ipsum pretium congue.</p>
+                                            </div>
+                                            <div class="tab-pane" id="3">
+                                                <h3>{{ $pakettours ->descripsihari }}</h3>
+                                                <p>Duis feugiat, tortor non molestie efficitur, enim velit ullamcorper ipsum, in pulvinar libero arcu eget magna. Suspendisse suscipit hendrerit neque, ut viverra ipsum luctus eu. Suspendisse blandit nunc nibh, in sagittis magna facilisis a. Nam vel fermentum elit, nec dignissim elit. Vivamus quis lacus sed velit feugiat lacinia. Curabitur euismod aliquet odio, non ultrices quam bibendum eu. Proin consequat neque sit amet est blandit cursus. Nunc in quam elementum, eleifend nulla sed, lacinia lacus.</p>
+                                            </div>
+                                        </div>
+                                        @endisset
+                                        
                             </tr>
                         </tbody>
-
                     </table>
                     <div class="add_bottom_15"><small>* Prices for person.</small>
                     </div>
@@ -263,7 +305,10 @@
                 <script src="{{ asset('assets/assets/js/common_scripts_min.js') }}"></script>
                 <script src="{{ asset('assets/assets/js/functions.js') }}"></script>
 
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+                <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
+                <!-- Bootstrap JS -->
                 <script>
                     $('.carousel-thumbs').owlCarousel({
                         loop: true,

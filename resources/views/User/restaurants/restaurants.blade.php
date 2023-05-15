@@ -21,9 +21,12 @@
 	<link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&amp;family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 
 	<!-- COMMON CSS -->
-	<link href="{{ asset('assets/assets/css/bootstrap.min.css') }}" rel="stylesheet">
-	<link href="{{ asset('assets/assets/css/style.css') }}" rel="stylesheet">
-	<link href="{{ asset('assets/assets/css/vendors.css') }}" rel="stylesheet">
+	<link href="{{ asset('assets/assets/css/bootstrap.min.css ') }}" rel="stylesheet">
+	<link href="{{ asset('assets/assets/css/style.css ') }}" rel="stylesheet">
+	<link href="{{ asset('assets/assets/css/vendors.css ') }}" rel="stylesheet">
+
+	<!-- SPECIFIC CSS -->
+	<link href="{{ asset('assets/assets/css/shop.css ')}} " rel="stylesheet">
 
 	<!-- ALTERNATIVE COLORS CSS -->
 	<link href="#" id="colors" rel="stylesheet">
@@ -54,9 +57,13 @@
 					<div class="col-6"><i class="icon-phone"></i><strong>0045 043204434</strong></div>
 					<div class="col-6">
 						<ul id="top_links">
-							<li><a href="#sign-in-dialog" id="access_link">Sign in</a></li>
-							<li><a href="wishlist.html" id="wishlist_link">Wishlist</a></li>
-							<li><a href="https://1.envato.market/ryzjQ" target="_parent">Purchase this template</a></li>
+							@auth
+							<!-- Navigation items for authenticated users -->
+							@else
+							<li><a href="/show-register" id="access_link">Register</a></li>
+							<li><a href="/user/login" id="access_link">Login</a></li>
+							@endauth
+							<li><a href="https://1.envato.market/ryzjQ" target="_parent">Tour DanauToba</a></li>
 						</ul>
 					</div>
 				</div><!-- End row -->
@@ -66,9 +73,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-3">
-					<div id="logo">
-						<a href="index-2.html"><img src="{{ asset('assets/img/logo.jpeg') }}" width="160" height="34" alt="City tours" class="logo_normal"></a>
-						<a href="index-2.html"><img src="{{ asset('assets/img/logo.jpeg') }}" width="160" height="34" alt="City tours" class="logo_sticky"></a>
+					<div class="col-3">
+						<img src="assets/img/logo.jpeg" width="160" height="34" alt="City tours">
 					</div>
 				</div>
 				<nav class="col-9">
@@ -89,11 +95,11 @@
 								<a href="/user/hotel">Hotels </a>
 							</li>
 							<li class="submenu">
-								<a href="/user/restaurant">Restorant</a>
+								<a href="/user/restaurant">Restoran</a>
 
 							</li>
 							<li class="submenu">
-								<a href="#">Transportation</a>
+								<a href="/rental">Transportation</a>
 
 							</li>
 							<li class="megamenu submenu">
@@ -105,43 +111,10 @@
 							</li>
 						</ul>
 					</div><!-- End main-menu -->
-					<ul id="top_tools">
-						<li>
-							<a href="javascript:void(0);" class="search-overlay-menu-btn"><i class="icon_search"></i></a>
-						</li>
-						<li>
-							<div class="dropdown dropdown-cart">
-								<a href="#0" data-bs-toggle="dropdown" class="cart_bt"><i class="icon_bag_alt"></i><strong>3</strong></a>
-								<ul class="dropdown-menu" id="cart_items">
-									<li>
-										<div class="image"><img src="img/thumb_cart_1.jpg" alt="image"></div>
-										<strong><a href="#">Louvre museum</a>1x $36.00 </strong>
-										<a href="#" class="action"><i class="icon-trash"></i></a>
-									</li>
-									<li>
-										<div class="image"><img src="img/thumb_cart_2.jpg" alt="image"></div>
-										<strong><a href="#">Versailles tour</a>2x $36.00 </strong>
-										<a href="#" class="action"><i class="icon-trash"></i></a>
-									</li>
-									<li>
-										<div class="image"><img src="img/thumb_cart_3.jpg" alt="image"></div>
-										<strong><a href="#">Versailles tour</a>1x $36.00 </strong>
-										<a href="#" class="action"><i class="icon-trash"></i></a>
-									</li>
-									<li>
-										<div>Total: <span>$120.00</span></div>
-										<a href="cart.html" class="button_drop">Go to cart</a>
-										<a href="payment.html" class="button_drop outline">Check out</a>
-									</li>
-								</ul>
-							</div><!-- End dropdown-cart-->
-						</li>
-					</ul>
 				</nav>
 			</div>
-		</div>
-		<!-- container -->
-	</header>
+		</div><!-- container -->
+	</header><!-- End Header -->
 	<!-- End Header -->
 	<section class="parallax" data-parallax="scroll" data-image-src="{{ asset('assets/img/sunset.jpg') }}" data-natural-width="1400" data-natural-height="470">
 		<div class="parallax">
@@ -161,77 +134,109 @@
 			</div>
 		</div>
 	</section>
-
-
-
 	<!-- End Section -->
 
 	<main>
-		<div id="position">
-			<div class="container">
-				<ul>
-					<li><a href="#">Home</a>
-					</li>
-					<li><a href="#">Category</a>
-					</li>
-					<li>Page active</li>
-				</ul>
-			</div>
-		</div>
+		<br><br>
 		<!-- End Position -->
 
-		<div class="container margin_60">
-			<div class="main_title">
-				<h2>Beberapa <span>Restauran</span> dari Wisata Tour Toba</h2>
-				<h5>
-					Restoran menawarkan pengalaman makan yang unik, seperti menu yang kreatif atau suasana yang tidak biasa
-				</h5>
-			</div>
-			<hr>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="shop-section p-4">
 
-			@foreach ($restaurants as $restaurant )
-			<div class="strip_all_tour_list wow fadeIn" data-wow-delay="0.1s">
-				<div class="row">
-					<div class="col-lg-4 col-md-4 position-relative">
-						<div class="ribbon_3 popular"><span>Popular</span>
-						</div>
-						<div class="wishlist">
-							<a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-						</div>
-						@foreach ($restaurant->images as $image)
-						<div class="img_list">
-							<a href="{{ route('restaurant.details', ['id' => $restaurant->id]) }}"><img src="{{ asset('storage/restaurant/' . $image->images) }}" alt="Image">
-								<div class="short_info"><i class="icon_set_3_restaurant-2"></i> Fast food</div>
-							</a>
-						</div>
-						@endforeach
-					</div>
-					<div class="col-lg-6 col-md-6">
-						<div class="tour_list_desc">
-							<div class="rating"><i class="icon-smile voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile  voted"></i><i class="icon-smile"></i><small>(75)</small>
+						<div class="items-sorting">
+							<div class="row">
+								<div class="col-6">
+									<div class="results_shop">
+										Showing 1–9 of 15 results
+									</div>
+								</div>
+								<div class="col-6">
+									<form action="{{ route('restaurant.filterbyprice') }}" method="GET">
+										@csrf
+										<div class="form-group">
+											<label for="price-filter">Filter by price:</label>
+											<select name="price-filter" id="price-filter" onchange="this.form.submit()">
+												<option value="all">All prices</option>
+												<option value="cheap">Cheap</option>
+												<option value="moderate">Moderate</option>
+												<option value="expensive">Expensive</option>
+											</select>
+										</div>
+									</form>
+								</div>
+
+
+
 							</div>
-							<h3><strong>{{$restaurant->nama_restaurant}}</strong> restaurant</h3>
-							<h5><strong>{{$restaurant->lokasi}}</strong></h5>
-							<p>{{$restaurant->description}}</p>
 						</div>
-					</div>
-					<div class="col-lg-2 col-md-2">
-						<div class="price_list">
-							<div><sup>Rp.</sup>{{$restaurant->harga}}<span class="normal_price_list"></small>
-								<a href="{{ route('restaurant.details', ['id' => $restaurant->id]) }}" class="btn_1">Details</a>
-								</p>
+						<!--End Sort By-->
+
+						<div class="row">
+							@foreach ($restaurants as $restaurant )
+							<div class="shop-item col-lg-3 col-md-6 col-sm-6">
+								<div class="inner-box">
+									<div class="image-box">
+										@foreach ($restaurant->images as $image)
+										<figure class="image">
+											<a href="{{ route('restaurantrating.index', ['id' => $restaurant->id]) }}"><img src="{{ asset('storage/restaurant/' . $image->images) }}" alt="">
+											</a>
+										</figure>
+										@endforeach
+									</div>
+									<div class="product_description">
+										<!-- <div class="rating">
+                                        <i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
+                                    </div> -->
+										<h3><a href="#">{{$restaurant->nama_restaurant}}</a></h3>
+										<div class="price">
+											<span class="offer"></span>Rp. {{$restaurant->harga}}
+										</div>
+										<h3><a href="#">{{$restaurant->lokasi}}</a></h3>
+									</div>
+								</div>
 							</div>
+							@endforeach
+							<!--End Shop Item-->
+							<!--End Shop Item-->
 
 						</div>
+						<!--End Shop Item-->
+
+						<nav aria-label="Page navigation">
+							<ul class="pagination justify-content-center">
+								<li class="page-item">
+									<a class="page-link" href="#" aria-label="Previous">
+										<span aria-hidden="true">&laquo;</span>
+										<span class="sr-only">Previous</span>
+									</a>
+								</li>
+								<li class="page-item active"><span class="page-link">1</span>
+								</li>
+								<li class="page-item"><a class="page-link" href="#">2</a></li>
+								<li class="page-item"><a class="page-link" href="#">3</a></li>
+								<li class="page-item">
+									<a class="page-link" href="#" aria-label="Next">
+										<span aria-hidden="true">&raquo;</span>
+										<span class="sr-only">Next</span>
+									</a>
+								</li>
+							</ul>
+						</nav>
+						<!-- end pagination-->
+
 					</div>
+					<!-- End row -->
 				</div>
+				<!-- End col -->
 			</div>
-			@endforeach
-
 			<!-- End row -->
-
-			<!-- End container -->
+		</div>
+		<!-- End Container -->
 	</main>
+
+
 	<!-- End main -->
 
 	<footer class="revealed">
@@ -356,17 +361,39 @@
 				</div>
 			</div>
 		</form>
+		<script>
+			document.getElementById("price-filter").addEventListener("change", function() {
+				var filterValue = this.value;
+				var url = window.location.href.split('?')[0]; // get the current URL without query string
+				var queryString = window.location.search;
+				var searchParams = new URLSearchParams(queryString);
+				searchParams.set('filter', filterValue);
+				window.location.href = url + '?' + searchParams.toString();
+			});
+		</script>
 		<!--form -->
 	</div>
 	<!-- /Sign In Popup -->
 
 	<!-- Common scripts -->
-	<script src="{{ asset('assets/assets/js/jquery-3.6.1.min.js') }}"></script>
-	<script src="{{ asset('assets/assets/js/common_scripts_min.js') }}"></script>
-	<script src="{{ asset('assets/assets/js/functions.js') }}"></script>
+	<script src="{{ asset ('assets/assets/js/jquery-3.6.1.min.js') }}"></script>
+	<script src="{{ asset ('assets/assets/js/common_scripts_min.js') }}"></script>
+	<script src="{{ asset ('assets/assets/js/functions.js') }}"></script>
 
-
-
+	<!-- SWITCHER  -->
+	<script src="{{ asset ('assets/assets/js/switcher.js') }}"></script>
+	<div id="style-switcher">
+		<h2>Color Switcher <a href="#"><i class="icon_set_1_icon-65"></i></a></h2>
+		<div>
+			<ul class="colors" id="color1">
+				<li><a href="#" class="default" title="Defaul"></a></li>
+				<li><a href="#" class="aqua" title="Aqua"></a></li>
+				<li><a href="#" class="green_switcher" title="Green"></a></li>
+				<li><a href="#" class="orange" title="Orange"></a></li>
+				<li><a href="#" class="blue" title="Blue"></a></li>
+			</ul>
+		</div>
+	</div>
 </body>
 
 </html>

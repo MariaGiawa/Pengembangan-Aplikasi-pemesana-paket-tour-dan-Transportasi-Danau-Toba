@@ -20,4 +20,8 @@ class Restaurant extends Model
     {
         return $this->hasMany(RestaurantImage::class);
     }
+    public function reviews()
+    {
+        return $this->hasMany(Restaurant_Reviews::class);
+    }
 }

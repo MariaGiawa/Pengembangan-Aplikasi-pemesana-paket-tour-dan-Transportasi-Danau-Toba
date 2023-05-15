@@ -161,3 +161,7 @@
       </div>
     </div>
   </section>
+
+  <script src="{{ asset('assets/assets/js/jquery-3.6.1.min.js') }}"></script>
+  <script src="{{ asset('assets/assets/js/common_scripts_min.js') }}"></script>
+  <script src="{{ asset('assets/assets/js/functions.js') }}"></script>

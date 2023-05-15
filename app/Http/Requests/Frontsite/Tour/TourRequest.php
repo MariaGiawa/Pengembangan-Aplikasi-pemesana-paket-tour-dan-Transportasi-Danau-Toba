@@ -31,7 +31,11 @@ class TourRequest extends FormRequest
             'diskon' => 'nullable',
             'hargatotal' => 'required|numeric',
             'jumlah_hari' => 'required|integer',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'descripsihari' => 'required|string',
+            'kegiatan' => 'required|string',
+            'descripsi' => 'required|string'
+
         ];
     }
 }

@@ -23,6 +23,15 @@
         <ol class="breadcrumb mb-4">
           <li class="breadcrumb-item active">Tambah Tour</li>
         </ol>
+        @if ($errors->any())
+        <div class="alert alert-danger">
+          <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+        @endif
 
         <form action="{{ route('paket-tour.store') }}" method="post" enctype="multipart/form-data">
           {{ csrf_field() }}
@@ -78,6 +87,30 @@
                 <textarea type="text" id="detail" class="form-control @error('detail') is-invalid @enderror" name="detail" value="{{old('detail')}}"></textarea>
               </div>
             </div>
+            <div class="col">
+              <div class="form-outline">
+                <label class="form-label" for="form6Example1">Deskripsi</label>
+                <textarea type="text" id="descripsi" class="form-control @error('descripsi') is-invalid @enderror" name="descripsi" value="{{old('descripsi')}}"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-4">
+            <div class="col">
+              <div class="form-outline">
+                <label class="form-label" for="form6Example1">Kegiatan</label>
+                <textarea type="text" id="kegiatan" class="form-control @error('kegiatan') is-invalid @enderror" name="kegiatan" value="{{old('kegiatan')}}"></textarea>
+
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-outline">
+                <label class="form-label" for="form6Example2">Deskripsi Hari</label>
+                <textarea type="text" id="descripsihari" class="form-control @error('descripsihari') is-invalid @enderror" name="descripsihari" value="{{old('descripsihari')}}"></textarea>
+
+              </div>
+            </div>
+          </div>
+          <div class="row mb-4">
             <div class="col">
               <div class="form-outline">
                 <label class="form-label" for="form6Example2">Gambar Paket Tour</label>

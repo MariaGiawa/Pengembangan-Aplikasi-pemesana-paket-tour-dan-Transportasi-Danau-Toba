@@ -43,7 +43,9 @@ class TourController extends Controller
 
     public function store(TourRequest $request)
     {
+
         $validatedData = $request->validated();
+        // dd($validatedData);
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $name = time() . '.' . $image->getClientOriginalExtension();

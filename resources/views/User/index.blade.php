@@ -52,10 +52,12 @@
                     <div class="col-6"><i class="icon-phone"></i><strong>0045 043204434</strong></div>
                     <div class="col-6">
                         <ul id="top_links">
-                            <li><a href="/user/login" ></a></li>
+                            @auth
+                            <!-- Navigation items for authenticated users -->
+                            @else
                             <li><a href="/show-register" id="access_link">Register</a></li>
                             <li><a href="/user/login" id="access_link">Login</a></li>
-
+                            @endauth
                             <li><a href="https://1.envato.market/ryzjQ" target="_parent">Tour DanauToba</a></li>
                         </ul>
                     </div>
@@ -88,11 +90,11 @@
                                 <a href="/user/hotel">Hotels </a>
                             </li>
                             <li class="submenu">
-                                <a href="/user/restaurant">Restorant</a>
+                                <a href="/user/restaurant">Restoran</a>
 
                             </li>
                             <li class="submenu">
-                                <a href="#">Transportation</a>
+                                <a href="/rental">Transportation</a>
 
                             </li>
                             <li class="megamenu submenu">
@@ -104,38 +106,6 @@
                             </li>
                         </ul>
                     </div><!-- End main-menu -->
-                    <ul id="top_tools">
-                        <li>
-                            <a href="javascript:void(0);" class="search-overlay-menu-btn"><i class="icon_search"></i></a>
-                        </li>
-                        <li>
-                            <div class="dropdown dropdown-cart">
-                                <a href="#0" data-bs-toggle="dropdown" class="cart_bt"><i class="icon_bag_alt"></i><strong>3</strong></a>
-                                <ul class="dropdown-menu" id="cart_items">
-                                    <li>
-                                        <div class="image"><img src="img/thumb_cart_1.jpg" alt="image"></div>
-                                        <strong><a href="#">Louvre museum</a>1x $36.00 </strong>
-                                        <a href="#" class="action"><i class="icon-trash"></i></a>
-                                    </li>
-                                    <li>
-                                        <div class="image"><img src="img/thumb_cart_2.jpg" alt="image"></div>
-                                        <strong><a href="#">Versailles tour</a>2x $36.00 </strong>
-                                        <a href="#" class="action"><i class="icon-trash"></i></a>
-                                    </li>
-                                    <li>
-                                        <div class="image"><img src="img/thumb_cart_3.jpg" alt="image"></div>
-                                        <strong><a href="#">Versailles tour</a>1x $36.00 </strong>
-                                        <a href="#" class="action"><i class="icon-trash"></i></a>
-                                    </li>
-                                    <li>
-                                        <div>Total: <span>$120.00</span></div>
-                                        <a href="cart.html" class="button_drop">Go to cart</a>
-                                        <a href="payment.html" class="button_drop outline">Check out</a>
-                                    </li>
-                                </ul>
-                            </div><!-- End dropdown-cart-->
-                        </li>
-                    </ul>
                 </nav>
             </div>
         </div><!-- container -->
@@ -152,7 +122,7 @@
                                     <div class="slide-text text-center white">
                                         <h2 class="owl-slide-animated owl-slide-title"> Welcome to<br>Tour Toba</h2>
                                         <p class="owl-slide-animated owl-slide-subtitle">
-                                        Enjoy your travel 
+                                            Enjoy your travel
                                         <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="all_tours_list.html" role="button">Read more</a></div>
                                     </div>
                                 </div>
@@ -201,150 +171,59 @@
             <div id="icon_drag_mobile"></div>
         </div>
         <!--/carousel-->
-
-        <div class="white_bg">
-            
-            <div class="container margin_50">
-            <center><h2>Page Available<h2></center>
-                <div class="row small-gutters categories_grid">
-                    <div class="col-sm-12 col-md-6">
-                        <a href="#">
-                            <img src="assets/img/paket.jpg" alt="" class="img-fluid">
-                            <div class="wrapper">
-                                <h2>Special Paket Tour</h2>
-                                <p>1150 Locations</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="row small-gutters mt-md-0 mt-sm-2">
-                            <div class="col-sm-6">
-                                <a href="#">
-                                    <img src="assets/img/tour1.jpeg" alt="" class="img-fluid">
-                                    <div class="wrapper">
-                                        <h2>Tours</h2>
-                                        <p>800 Locations</p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-sm-6">
-                                <a href="/user/hotel">
-                                    <img src="assets/img/hotel1.png" alt="" class="img-fluid">
-                                    <div class="wrapper">
-                                        <h2>Hotels</h2>
-                                        <p>650 Locations</p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-sm-12 mt-sm-2">
-                                <a href="/user/restaurant">
-                                    <img src="assets/img/hotel1.png" alt="" class="img-fluid">
-                                    <div class="wrapper">
-                                        <h2>Restaurants</h2>
-                                        <p>1132 Locations</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--/categories_grid-->
-            </div>
-            <!-- /container -->
-        </div>
         <!-- /white_bg -->
 
         <div class="container margin_60">
 
             <div class="main_title">
                 <h2>Tour Toba <span>Top</span> Tours</h2>
-                <!-- <p>Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.</p> -->
+                <p>Temukan Inspirasi Untuk Menjelajah Danau Toba.</p>
             </div>
-
+            @foreach ($tours as $tour)
+            <?php
+            $ratings = \App\Models\Tour_reviews::where('wisata_id', $tour->id)->get();
+            $averageRating = $ratings->avg('rating');
+            $starRating = round($averageRating * 2) / 2; // round to nearest 0.5
+            $fullStars = floor($starRating);
+            $halfStars = round($starRating - $fullStars);
+            $emptyStars = 5 - $fullStars - $halfStars;
+            ?>
             <div class="owl-carousel owl-theme list_carousel add_bottom_30">
                 <div class="item">
                     <div class="tour_container">
                         <div class="ribbon_3 popular"><span>Popular</span></div>
                         <div class="img_container">
-                            <a href="single_tour.html">
-                                <img src="assets/img/situmurun.jpg" width="800" height="533" class="img-fluid" alt="image">
+                            <a href="{{ route('rating.show', $tour->id) }}">
+                                <img src="/public/tours/{{ $tour->image }}" width="800" height="533" class="img-fluid" alt="image">
                                 <div class="short_info">
-                                    <i class="icon_set_1_icon-44"></i>Air Terjun Situmurun<span class="price"><sup>$</sup>39</span>
+                                    <i class="icon_set_1_icon-44"></i>{{$tour->nama}}
                                 </div>
                             </a>
                         </div>
                         <div class="tour_title">
-                            <p>Objek Wisata Danau Toba ini terletak di Jl. Simarjarunjung, Butu Bayu Pane Raja, Kec. Dolok Pardamean, Kabupaten Simalungun, Sumatera Utara. Objek wisata ini buka setiap hari mulai pukul 7:00 pagi- 18:00 WIB.</p>
+                            <p>{{$tour->detail}}</p>
                             <div class="rating">
-                                <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
+                                @for ($i = 0; $i < $fullStars; $i++) <i class="icon-star voted"></i>
+                                    @endfor
+                                    @if ($halfStars)
+                                    <i class="icon-star-half-alt voted"></i>
+                                    @endif
+                                    @for ($i = 0; $i < $emptyStars; $i++) <i class="icon-star-empty"></i>
+                                        @endfor
+                                        <small>({{$ratings->count()}})</small>
                             </div>
-                            <!-- end rating -->
-                            <div class="wishlist">
-                                <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-                            </div>
-                            <!-- End wish list-->
                         </div>
                     </div>
-                    <!-- End box tour -->
                 </div>
-                <!-- /item -->
-                <div class="item">
-                    <div class="tour_container">
-                        <div class="ribbon_3 popular"><span>Popular</span></div>
-                        <div class="img_container">
-                            <a href="single_tour.html">
-                                <img src="assets/img/holbung.jpg" width="800" height="533" class="img-fluid" alt="image">
-                                <div class="short_info">
-                                    <i class="icon_set_1_icon-43"></i>Bukit Holbung<span class="price"><sup>$</sup>45</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="tour_title">
-                            <p>Wilayah perbukitan di sekitar Danau Toba dapat menjadi pilihan wisata Danau Toba untuk menikmati panoramanya dari ketinggian, salah satunya adalah dari Bukit Holbung atau Bukit Teletubbies. </p>
-                            <div class="rating">
-                                <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-                            </div>
-                            <!-- end rating -->
-                            <div class="wishlist">
-                                <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-                            </div>
-                            <!-- End wish list-->
-                        </div>
-                    </div>
-                    <!-- End box tour -->
-                </div>
-                <!-- /item -->
-                <div class="item">
-                    <div class="tour_container">
-                        <div class="ribbon_3 popular"><span>Popular</span></div>
-                        <div class="img_container">
-                            <a href="single_tour.html">
-                                <img src="assets/img/nuni.jpg" width="800" height="533" class="img-fluid" alt="image">
-                                <div class="badge_save">Save<strong>30%</strong></div>
-                                <div class="short_info">
-                                    <i class="icon_set_1_icon-44"></i>Panatapan<span class="price"><sup>$</sup>48</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="tour_title">
-                            <p>Panatapan dalam bahasa Batak artinya tempat memandang. Seperti namanya disebut lokasi ini merupakan lokasi yang bagus untuk menikmati pemandangan Danau Toba. </p>
-                            <i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile voted"></i><i class="icon-smile"></i><small>(75)</small>
-                        </div>
-                        <!-- end rating -->
-                        <div class="wishlist">
-                            <a class="tooltip_flip tooltip-effect-1" href="javascript:void(0);">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-                        </div>
-                        <!-- End wish list-->
-                    </div>
-                </div>
-                <!-- End box tour -->
             </div>
+            @endforeach
+
 
 
             <p class="text-center add_bottom_30">
-                <a href="#" class="btn_1">View all Tours</a>
+                <a href="/rating/show" class="btn_1">View all Tours</a>
             </p>
-
+          
             <hr class="mt-5 mb-5">
 
             <div class="main_title">
@@ -353,48 +232,48 @@
             </div>
 
             <div class="owl-carousel owl-theme list_carousel add_bottom_30">
-            @foreach ($hotels as $hotel)
-              
-            <div class="item">
+                @foreach ($hotels as $hotel)
+
+                <div class="item">
                     <div class="hotel_container">
-                                <div class="ribbon_3 popular"><span>Popular</span></div>
-                                <div class="img_container">
-                                    <a href="{{ route('hotel.details', ['id' => $hotel->id]) }}">
-                                        @foreach ($hotel->images as $image)
-                                        <img src="/storage/{{$image->image_url}}" width="400" height="300" class="img-fluid" alt="Image">
-                                        @endforeach
-                                        <div class="score"><span>7.5</span>Good</div>
-                                        <div class="short_info hotel">
-                                            <span class="price"><sup>Rp.</sup>{{$hotel->harga}}</span>
-                                        </div>
-                                    </a>
+                        <div class="ribbon_3 popular"><span>Popular</span></div>
+                        <div class="img_container">
+                            <a href="{{ route('hotel.details', ['id' => $hotel->id]) }}">
+                                @foreach ($hotel->images as $image)
+                                <img src="/storage/{{$image->image_url}}" width="400" height="300" class="img-fluid" alt="Image">
+                                @endforeach
+                                <div class="score"><span>7.5</span>Good</div>
+                                <div class="short_info hotel">
+                                    <span class="price"><sup>Rp.</sup>{{$hotel->harga}}</span>
                                 </div>
-                                <div class="hotel_title">
-                                    <h3><strong>{{$hotel->nama_hotel}}</strong> Hotel</h3>
-                                    <p>{{$hotel->lokasi}}</p>
-                                    <div class="rating">
-                                        <i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
-                                    </div>
-                                    <!-- end rating -->
-                                    <div class="wishlist">
-                                        <a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
-                                    </div>
-                                    <!-- End wish list-->
-                               
+                            </a>
+                        </div>
+                        <div class="hotel_title">
+                            <h3><strong>{{$hotel->nama_hotel}}</strong> Hotel</h3>
+                            <p>{{$hotel->lokasi}}</p>
+                            <div class="rating">
+                                <i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star-empty"></i>
                             </div>
+                            <!-- end rating -->
+                            <div class="wishlist">
+                                <a class="tooltip_flip tooltip-effect-1" href="#">+<span class="tooltip-content-flip"><span class="tooltip-back">Add to wishlist</span></span></a>
+                            </div>
+                            <!-- End wish list-->
+
                         </div>
                     </div>
-                    @endforeach
-                    <!-- End box -->
                 </div>
-                <!-- /item -->
-
+                @endforeach
+                <!-- End box -->
             </div>
-            <!-- /carousel -->
+            <!-- /item -->
 
-            <p class="text-center nopadding">
-                <a href="/user/hotel" class="btn_1">View all Hotels</a>
-            </p>
+        </div>
+        <!-- /carousel -->
+
+        <p class="text-center nopadding">
+            <a href="/user/hotel" class="btn_1">View all Hotels</a>
+        </p>
 
         </div>
         <!-- End container -->
@@ -428,9 +307,8 @@
                 <div class="banner_2">
                     <div class="wrapper d-flex align-items-center opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.3)" style="background-color: rgba(0, 0, 0, 0.3);">
                         <div>
-                            <h3>Your Perfect<br>Tour Experience</h3>
-                            <p>Activities and accommodations</p>
-                            <a href="all_tours_list.html" class="btn_1">Read more</a>
+                            <h3><br>Pengalaman Tour</h3>
+                            <p>Aktivitas dan  and accommodations</p>
                         </div>
                     </div>
                     <!-- /wrapper -->
@@ -444,64 +322,60 @@
 
         <div class="container margin_60">
             <div class="main_title">
-                <h2>Lates <span>Blog</span> News</h2>
-                <p>Quisque at tortor a libero posuere laoreet vitae sed arcu. Curabitur consequat.</p>
+                <h2>Tour</h2>
+                <p>Tour Wisata Lainnya</p>
             </div>
 
             <div class="row">
                 <div class="col-lg-6">
-                    <a class="box_news" href="blog.html">
+                    <a class="box_news" href="https://kutabalitour.com/">
                         <figure><img src="assets/img/news_home_1.jpg" alt="">
-                            <figcaption><strong>28</strong>Dec</figcaption>
                         </figure>
                         <ul>
-                            <li>Mark Twain</li>
-                            <li>20.11.2017</li>
+                            <li>Bali</li>
+                            <li>2023</li>
                         </ul>
-                        <h4>Pri oportere scribentur eu</h4>
-                        <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+                        <h4>kutabalitour</h4>
+                        <p>Bali merupakan pulau yang mempunyai daya tarik yang sangat luar biasa bagi wisatawan domestik maupun wisatawan mancanegara yang ingin menghilangkan kepenatan selama melakukan aktivitas kesehariannya.....</p>
                     </a>
                 </div>
                 <!-- /box_news -->
                 <div class="col-lg-6">
-                    <a class="box_news" href="blog.html">
+                    <a class="box_news" href="https://www.javaheritagetour.com/?gclid=CjwKCAjwx_eiBhBGEiwA15gLN1YlDC8plZBKLyvlgSJNbTdFsmuTS5TMq9c2YYpgdrKf3i2pQ4_Y7RoCoIIQAvD_BwE">
                         <figure><img src="assets/img/news_home_2.jpg" alt="">
-                            <figcaption><strong>28</strong>Dec</figcaption>
                         </figure>
                         <ul>
-                            <li>Jhon Doe</li>
-                            <li>20.11.2017</li>
+                            <li>Jawa</li>
+                            <li>2023</li>
                         </ul>
-                        <h4>Duo eius postea suscipit ad</h4>
-                        <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+                        <h4>javaheritagetour</h4>
+                        <p>Yogyakarta is one of the oldest royal seats of Java and therefore has a wealth of history, tradition, crafts and culture to offer....</p>
                     </a>
                 </div>
                 <!-- /box_news -->
                 <div class="col-lg-6">
-                    <a class="box_news" href="blog.html">
+                    <a class="box_news" href="http://www.goldenrama.com/">
                         <figure><img src="assets/img/news_home_3.jpg" alt="">
-                            <figcaption><strong>28</strong>Dec</figcaption>
                         </figure>
                         <ul>
-                            <li>Luca Robinson</li>
-                            <li>20.11.2017</li>
+                            <li>Indonesia</li>
+                            <li>2023</li>
                         </ul>
-                        <h4>Elitr mandamus cu has</h4>
-                        <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+                        <h4>Goldenrama</h4>
+                        <p>Pilih Destinasi liburan kamu dari Bulan - bulan Pilihan & Musim - musim menarik yang tak terlupakan.....</p>
                     </a>
                 </div>
                 <!-- /box_news -->
                 <div class="col-lg-6">
-                    <a class="box_news" href="blog.html">
-                        <figure><img src="img/news_home_4.jpg" alt="">
-                            <figcaption><strong>28</strong>Dec</figcaption>
+                    <a class="box_news" href="https://indonesiatrip.id/">
+                        <figure><img src="assets/img/news_home_4.jpg" alt="">
                         </figure>
                         <ul>
-                            <li>Paula Rodrigez</li>
-                            <li>20.11.2017</li>
+                            <li>Indonesia</li>
+                            <li>2023</li>
                         </ul>
-                        <h4>Id est adhuc ignota delenit</h4>
-                        <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+                        <h4>indonesiatrip</h4>
+                        <p>Eksplor keanekaragaman Indonesia....</p>
                     </a>
                 </div>
                 <!-- /box_news -->
@@ -519,15 +393,13 @@
                 <div class="col-md-4">
                     <h3>Need help?</h3>
                     <a href="tel://004542344599" id="phone">+45 423 445 99</a>
-                    <a href="mailto:help@citytours.com" id="email_footer">help@citytours.com</a>
+                    <a href="mailto:help@citytours.com" id="email_footer">tobatour@gmail.com</a>
                 </div>
                 <div class="col-md-3">
                     <h3>About</h3>
                     <ul>
                         <li><a href="#">About us</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Login</a></li>
-                        <li><a href="#">Register</a></li>
+                       
                         <li><a href="#">Terms and condition</a></li>
                     </ul>
                 </div>
@@ -535,30 +407,10 @@
                     <h3>Discover</h3>
                     <ul>
                         <li><a href="#">Community blog</a></li>
-                        <li><a href="#">Tour guide</a></li>
-                        <li><a href="#">Wishlist</a></li>
                         <li><a href="#">Gallery</a></li>
                     </ul>
                 </div>
-                <div class="col-md-2">
-                    <h3>Settings</h3>
-                    <div class="styled-select">
-                        <select name="lang" id="lang">
-                            <option value="English" selected>English</option>
-                            <option value="French">French</option>
-                            <option value="Spanish">Spanish</option>
-                            <option value="Russian">Russian</option>
-                        </select>
-                    </div>
-                    <div class="styled-select">
-                        <select name="currency" id="currency">
-                            <option value="USD" selected>USD</option>
-                            <option value="EUR">EUR</option>
-                            <option value="GBP">GBP</option>
-                            <option value="RUB">RUB</option>
-                        </select>
-                    </div>
-                </div>
+               
             </div><!-- End row -->
             <div class="row">
                 <div class="col-md-12">
@@ -572,7 +424,7 @@
                             <li><a href="#"><i class="icon-vimeo"></i></a></li>
                             <li><a href="#"><i class="icon-youtube-play"></i></a></li>
                         </ul>
-                        <p>© Citytours 2022</p>
+                        <p>© Toba Tour 2023</p>
                     </div>
                 </div>
             </div><!-- End row -->
@@ -649,18 +501,7 @@
 
     <!-- SWITCHER  -->
     <script src="assets/assets/js/switcher.js"></script>
-    <div id="style-switcher">
-        <h2>Color Switcher <a href="#"><i class="icon_set_1_icon-65"></i></a></h2>
-        <div>
-            <ul class="colors" id="color1">
-                <li><a href="#" class="default" title="Defaul"></a></li>
-                <li><a href="#" class="aqua" title="Aqua"></a></li>
-                <li><a href="#" class="green_switcher" title="Green"></a></li>
-                <li><a href="#" class="orange" title="Orange"></a></li>
-                <li><a href="#" class="blue" title="Blue"></a></li>
-            </ul>
-        </div>
-    </div>
+
 </body>
 
 </html>

@@ -7,6 +7,8 @@ use App\Models\Hotel;
 use App\Models\HotelImage;
 use App\Models\PemesananHotel;
 use App\Models\Tour;
+use App\Models\Tour_reviews;
+use App\Models\Wisata;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -31,9 +33,10 @@ class HotelController extends Controller
     }
     public function showList()
     {
-        $pakettours = Tour::paginate(3);
+        $ratings = Tour_reviews::all();
+        $tours = Wisata::paginate(3);
         $hotels = Hotel::paginate(3);
-        return view('User.index', ['hotels' => $hotels,'pakettours'=> $pakettours]);
+        return view('User.index', ['hotels' => $hotels,'tours'=> $tours,'ratings'=>$ratings]);
     }
     public function details($id)
     {

@@ -17,7 +17,11 @@ class Tour extends Model
         'diskon',
         'hargatotal',
         'jumlah_hari',
-        'image'
+        'image',
+        'descripsihari',
+        'kegiatan',
+        'descripsi'
+
 
     ];
     

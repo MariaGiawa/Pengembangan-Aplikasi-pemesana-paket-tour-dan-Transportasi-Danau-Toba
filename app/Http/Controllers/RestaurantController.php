@@ -27,9 +27,10 @@ class RestaurantController extends Controller
 
     public function details($id)
     {
+
         $restaurant = Restaurant::findOrFail($id);
         $images = $restaurant->images;
-        return view('User.restaurants.detail', ['restaurant' => $restaurant,'images' => $images]);
+        return view('User.restaurants.detail', ['restaurant' => $restaurant, 'images' => $images]);
     }
     /**
      * Show the form for creating a new resource.
@@ -52,10 +53,8 @@ class RestaurantController extends Controller
 
     public function store(RestaurantRequest $request)
     {
-        $request = $request->validated();
-        $restaurant = Restaurant::create($request);
+        $restaurant = Restaurant::create($request->validated());
 
-        $image = $request->file('images');
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $imageName = $image->getClientOriginalName();
@@ -66,9 +65,10 @@ class RestaurantController extends Controller
                 ]);
             }
         }
-        // dd($restaurant);
+
         return redirect('kelola-restaurant');
     }
+
 
     public function edit($restaurant_id)
     {
@@ -85,7 +85,7 @@ class RestaurantController extends Controller
         $restaurant->lokasi = $request->input('lokasi');
         $restaurant->description = $request->input('description');
         $restaurant->harga = $request->input('harga');
-         
+
         $deletedImages = $request->input('deleted_images');
         if ($deletedImages) {
             RestaurantImage::whereIn('id', $deletedImages)->delete();
@@ -107,6 +107,27 @@ class RestaurantController extends Controller
         $restaurant->save();
         return redirect('kelola-restaurant')->with('success', 'restaurant updated successfully');
     }
+
+    public function filterByPrice(RestaurantRequest $request)
+    {
+        dd($request);
+        $priceFilter = $request->input('price-filter');
+    
+        // Query     the database based on the selected price filter
+        if ($priceFilter == 'cheap') {
+            $results = Restaurant::where('harga', '<', 50000)->get();
+        } elseif ($priceFilter == 'moderate') {
+            $results = Restaurant::whereBetween('harga', [50000, 100000])->get();
+        } elseif ($priceFilter == 'expensive') {
+            $results = Restaurant::where('harga', '>', 100000)->get();
+        } else {
+            $results = Restaurant::all();
+        }
+    
+        // Pass the results to your view
+        return view('User.restaurants.detail', compact('results'));
+    }
+
 
     public function delete($restaurants_id)
     {

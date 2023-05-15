@@ -5,10 +5,14 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\PemesanController;
+use App\Http\Controllers\RatingController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RentalController;
 use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\RestaurantReviewController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\User\UserRentalController;
+use App\Http\Controllers\WisataController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +48,7 @@ Route::get('/edit-hotel/{id}', [HotelController::class, 'edit']);
 Route::post('/edit-hotel/{id}', [HotelController::class, 'update'])->name('hotel.ubah');
 Route::post('/tambah-hotel/store', [HotelController::class, 'store'])->name('formhotel.store');
 Route::delete('/delete/{id}', [HotelController::class, 'delete'])->name('hotel.hapus');
+
 Route::post('/pemesanan-hotel', [HotelController::class, 'storePemesanan'])->name('hotel.storePemesanan');
 Route::get('/order-hotel', [PemesanController::class, 'index'])->name('pemesananhotel');
 Route::put('/hotels/{id}/accept', [PemesanController::class, 'accept'])->name('hotels.accept');
@@ -59,11 +64,28 @@ Route::get('/edit-restaurant/{id}', [RestaurantController::class, 'edit']);
 Route::post('/edit-restaurant/{id}', [RestaurantController::class, 'update'])->name('restaurant.ubah');
 Route::post('/tambah-restaurant/store', [RestaurantController::class, 'store'])->name('formrestaurant.store');
 Route::get('/delete/{id}', [RestaurantController::class, 'delete'])->name('restauran.hapus');
-Route::resource('/user/transportation',UserRentalController::class);
+
+Route::get('/rental', [UserRentalController::class, 'index'])->name('rental');
+Route::get('/rental/{id}', [UserRentalController::class, 'show'])->name('rental.show');
+
+
 Route::post('/user/transportation/findcar', [UserRentalController::class, 'findCar'])->name('usertransportation.findcar');
 Route::resource('/paket-tour', TourController::class);
 Route::get('/paket-tour/{id}', [TourController::class, 'details'])->name('paket-tour.details');
+
 Route::resource('/transportations',AdminRentalController::class);
+Route::resource('/tours',WisataController::class);
 Route::resource('/booking', BookingController::class);
+Route::resource('/rating', RatingController::class);
+Route::resource('/userrental', RentalController::class);
+Route::post('/userrental/store', [UserRentalController::class, 'store'])->name('userrental.store');
+Route::get('/user/filterbyprice', [RestaurantController::class, 'filterByPrice'])->name('restaurant.filterbyprice');
+
+Route::resource('/restaurantrating', RestaurantReviewController::class);
+
+
+
+
+
 
 

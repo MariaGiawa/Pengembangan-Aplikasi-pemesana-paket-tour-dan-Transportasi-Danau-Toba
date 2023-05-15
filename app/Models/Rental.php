@@ -15,7 +15,8 @@ class Rental extends Model
         'pickingupdate',
         'pickinguphour',
         'pickingoffdate',
-        'pickingoffhour'
+        'pickingoffhour',
+        'status'
     ];
 
     public function transportations()

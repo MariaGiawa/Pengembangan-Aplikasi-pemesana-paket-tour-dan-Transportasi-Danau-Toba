@@ -13,7 +13,9 @@ class BookingController extends Controller
 {
     public function show($id)
     {
+
         $pakettours = Tour::findOrFail($id);
+        // dd($pakettours);
         $tourId = $pakettours->id;
         $images = $pakettours->images;
         return view('User.paket-tour.booking', ['pakettours' => $pakettours, 'images' => $images, 'tourId' => $tourId]);
@@ -54,12 +56,9 @@ class BookingController extends Controller
         return redirect()->back()->with('success', 'Booking berhasil ditambahkan');
     }
 
-
-
-
     public function update(Request $request, $booking)
     {
-        // dump($request);
+        
         $request->validate([
             'status' => 'required|in:accepted,rejected',
         ]);
